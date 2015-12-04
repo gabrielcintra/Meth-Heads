@@ -1,19 +1,20 @@
 ﻿#pragma strict
-var smoke : GameObject;
+var smokeLeft : GameObject;
+var smokeRight : GameObject;
 
 function Start () {
-smoke = GameObject.Find("WhiteSmoke");
-smoke.SetActive(false);
+	smokeLeft = GameObject.Find("smokeLeft");
+	smokeRight = GameObject.Find("smokeRight");
+	
+	smokeRight.SetActive(true);
+	smokeLeft.SetActive(true);
 }
 
 function Update () {
-
 }
 
-function OnMouseEnter(){
-smoke.SetActive(true); 
+function OnMouseDown(){
 }
 
 function OnMouseExit(){
-smoke.SetActive(false);
 }
