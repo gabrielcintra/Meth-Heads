@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Arquivos\Código\Mosca.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Arquivos\Código\BalaoFala.js">
     <Files>
-      <File FileName="Assets\Arquivos\Código\Mosca.js" Line="41" Column="72" />
-      <File FileName="Assets\Arquivos\Código\BalaoFala.js" Line="1" Column="1" />
-      <File FileName="Assets\Arquivos\Código\Fumaça.js" Line="1" Column="1" />
+      <File FileName="Assets\Arquivos\Código\Main.js" Line="1" Column="1" />
+      <File FileName="Assets\Arquivos\Código\Mosca.js" Line="15" Column="27" />
+      <File FileName="Assets\Arquivos\Código\BalaoFala.js" Line="33" Column="3" />
+      <File FileName="Assets\Arquivos\Código\Fumaça.js" Line="16" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

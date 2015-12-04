@@ -7,20 +7,19 @@ class Mosca extends MonoBehaviour {
 
 	var moscaObjeto : GameObject;
 
-	function Start () {
-	
+	function Start () 
+	{
 		moscaObjeto = GameObject.Find("Mosca");
 		moscaObjeto.SetActive(false);
 		
 		Invoke("tentaAparecer", 0);
 	}
 
-	function Update () {
-	}
+	function Update () {}
 	
-	function tentaAparecer() {
-	
-		var chance = 5;// Random.Range(0, 10);
+	function tentaAparecer() 
+	{
+		var chance = 5; // Random.Range(0, 10);
 		
 		if (chance == 5)
 			aparecer();
@@ -28,15 +27,15 @@ class Mosca extends MonoBehaviour {
 			Invoke("tentaAparecer", 20);
 	}
 	
-	function aparecer() {
+	function aparecer() 
+	{
 		moscaObjeto.SetActive(true);
 		moverMosca();
 	}
 	
-	function moverMosca() {
-	
+	function moverMosca() 
+	{
 		// Screen.weight e Screen.height
-
 		var newX = moscaObjeto.transform.position.x + Random.Range(-0.07,0.07);
 		var newY = moscaObjeto.transform.position.y + Random.Range(-0.07,0.07);
 		
@@ -51,8 +50,8 @@ class Mosca extends MonoBehaviour {
 		Invoke("moverMosca", 0);
 	}
 	
-	function pararMosca() {
-	
+	function pararMosca() 
+	{
 		moscaObjeto.SetActive(false);
 		CancelInvoke("moverMosca");
 		Invoke("tentaAparecer", 20);

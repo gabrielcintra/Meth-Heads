@@ -29,8 +29,8 @@ class BalaoFala extends MonoBehaviour{
 	
 	var falaAtual : String;
 	 
-	function Start () {
-		
+	function Start () 
+	{
 		balaoFala = GameObject.Find("balaoFala");
 		balaoTexto = GameObject.Find("FalaWW").GetComponent(Text);
 		
@@ -66,8 +66,8 @@ class BalaoFala extends MonoBehaviour{
 		**/
 	}
 	
-	function falar() {
-	
+	function falar() 
+	{
 		var texto = FalasWWmain[Random.Range(0, FalasWWmain.length-1)];
 	
 		balaoTexto.text = texto;
@@ -76,7 +76,8 @@ class BalaoFala extends MonoBehaviour{
 		Invoke("calar", texto.length - (texto.length/2) - (texto.length/2)/2);
 	}
 	
-	function calar() {	
+	function calar() 
+	{	
 		balaoFala.SetActive(false);
 		Invoke("falar", Random.Range(4, 10));
 	}
