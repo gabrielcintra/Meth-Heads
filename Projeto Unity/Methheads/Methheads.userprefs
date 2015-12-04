@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Arquivos\Código\Main.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Arquivos\Código\Laboratorio.js">
     <Files>
-      <File FileName="Assets\Arquivos\Código\Main.js" Line="9" Column="2" />
+      <File FileName="Assets\Arquivos\Código\Laboratorio.js" Line="16" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
