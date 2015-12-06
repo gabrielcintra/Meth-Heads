@@ -6,6 +6,7 @@ import UnityEngine.GameObject;
 class Mosca extends MonoBehaviour {
 
 	var moscaObjeto : GameObject;
+	static var temMosca : boolean;
 
 	function Start () 
 	{
@@ -19,11 +20,11 @@ class Mosca extends MonoBehaviour {
 	
 	function tentaAparecer() 
 	{
-		var chance = 5; // Random.Range(0, 10);
+		var chance = Random.Range(0, 10);
 		
-		if (chance == 5)
+		if (chance == 5) {
 			aparecer();
-		else
+		} else
 			Invoke("tentaAparecer", 20);
 	}
 	
@@ -54,6 +55,7 @@ class Mosca extends MonoBehaviour {
 	{
 		moscaObjeto.SetActive(false);
 		CancelInvoke("moverMosca");
+		
 		Invoke("tentaAparecer", 20);
 	}
 

@@ -10,4 +10,5 @@ function Start () {
 function Update () {
     index = (Time.time * framesPerSecond) % frames.Length;
     GetComponent(Image).sprite = frames[index];
+    
 }

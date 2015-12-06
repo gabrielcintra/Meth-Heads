@@ -5,29 +5,27 @@ class BalaoFala extends MonoBehaviour{
 	var balaoFala : GameObject;
 	var balaoTexto : Text;
 	
-	var FalasWWmain = ["Say my name.", 
+	var falasNormal = ["Say my name.", 
 					   "I'm the one who \n knocks.",
 					   "Your meth is disgraceful!", 
 					   "Lets cook!", 
 					   "Don't you know how to cook?",
 					   "CLICK! CLICK EVERYWHERE!", "Watch out for DEA."];
 					   
-	var FalasWWFly = ["A FLY! KILL IT!", 
+	var falasMosca = ["A FLY! KILL IT!", 
 	                  "We can't cook correctly with \n a fly in the lab.",
 		              "A fucking fly. Kill it please.", 
 		              "Thats the sound of... OMG! A FLY!"];
 		              
-	var FalasWWDEA = ["You're taking too much risk.", "DEA is on us."];
+	var falasDEA = ["You're taking too much risk.", "DEA is on us."];
 	
-	var FalasWWDEA_gotcha = ["DEA has seized some of our labs and \n arrested some of our dealers."];
+	var falasDEApego = ["DEA has seized some of our labs and \n arrested some of our dealers."];
 		 
-	var FalasWWIRS = ["DEA and IRS are on us."];
+	var falasIRS = ["DEA and IRS are on us."];
 	
-	var FalasWWIRS2 = ["IRS is watching us.", "Be careful with IRS."];
+	var falasIRS2 = ["IRS is watching us.", "Be careful with IRS."];
 	
-	var FalasWWDeaIRS = ["Shit...IRS took our money"];
-	
-	var falaAtual : String;
+	var falasDEAIRS = ["Shit...IRS took our money"];
 	 
 	function Start () 
 	{
@@ -68,8 +66,16 @@ class BalaoFala extends MonoBehaviour{
 	
 	function falar() 
 	{
-		var texto = FalasWWmain[Random.Range(0, FalasWWmain.length-1)];
-	
+		var falas : String[];
+		var texto : String;
+		
+		//if (Main.checaMosca())
+		//	falas = falasMosca;
+		//else
+			falas = falasNormal;
+			
+		texto = falas[Random.Range(0, falas.length-1)];
+		
 		balaoTexto.text = texto;
 		balaoFala.SetActive(true);
 		
