@@ -2,28 +2,30 @@
 
 import UnityEngine.Screen;
 import UnityEngine.GameObject;
+import UnityEngine.Animator;
 
 class Mosca extends MonoBehaviour {
 
 	var moscaObjeto : GameObject;
+	var moscaMorta : Sprite[]; //0 - Morta / 1 - Mancha
 
 	function Start () 
 	{
 		moscaObjeto = GameObject.Find("Mosca");
 		moscaObjeto.SetActive(false);
 		
-		Invoke("tentaAparecer", 20);
+		Invoke("tentaAparecer", 0);
 	}
 	
 	function OnMouseDown() 
 	{
-		pararMosca();
+		mostrarMoscaMorta();
 	}
 	
 	// tenta fazer a mosca surgir na tela (6% de chance)
 	function tentaAparecer() 
 	{
-		var chance = Random.Range(0, 15);
+		var chance = 5;//Random.Range(0, 15);
 		
 		if (chance == 5) {
 			aparecer();
@@ -40,8 +42,8 @@ class Mosca extends MonoBehaviour {
 	function moverMosca() 
 	{
 		// Screen.weight e Screen.height
-		var newX = moscaObjeto.transform.position.x + Random.Range(-0.07,0.07);
-		var newY = moscaObjeto.transform.position.y + Random.Range(-0.07,0.07);
+		var newX = moscaObjeto.transform.position.x + Random.Range(-0.1,0.1);
+		var newY = moscaObjeto.transform.position.y + Random.Range(-0.1,0.1);
 		
 		if (newX > -4 && newX < 4)
 			moscaObjeto.transform.position.x = newX;
@@ -53,12 +55,32 @@ class Mosca extends MonoBehaviour {
 
 		Invoke("moverMosca", 0);
 	}
-	
-	function pararMosca() 
+
+	function mostrarMoscaMorta()
 	{
+		CancelInvoke("moverMosca");	
+		GetComponent(Animator).enabled = false;
+		GetComponent(Image).sprite = moscaMorta[0];
+		
+		derrubarMoscaMorta();
+	}
+	
+	function derrubarMoscaMorta()
+	{
+		moscaObjeto.transform.position.y = moscaObjeto.transform.position.y - 0.1;
+		
+		if (moscaObjeto.transform.position.y <= -3) {
+			GetComponent(Image).sprite = moscaMorta[1];
+			Invoke("removerMoscaMorta", 2);
+		} else
+			Invoke("derrubarMoscaMorta", 0.01);
+	}
+	
+	function removerMoscaMorta() 
+	{
+		GetComponent(Animator).enabled = true;
 		moscaObjeto.SetActive(false);
 		
-		CancelInvoke("moverMosca");		
 		Invoke("tentaAparecer", 20);
 	}
 }

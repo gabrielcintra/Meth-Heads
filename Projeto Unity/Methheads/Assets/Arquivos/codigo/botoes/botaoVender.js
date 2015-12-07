@@ -3,18 +3,16 @@
 class botaoVender extends MonoBehaviour {
 
 	var frames : Sprite[];
+	var precoUnidade : float;
 
 	var textoMeth : textoMain;
 	var valorMeth : long;
 	
 	var textoDinSujo : textoMain;
 	var valorSujo : long;
-	
-	var temMeth : boolean;
 
 	function Start() 
 	{ 
-		temMeth = false;
 		GetComponent(Animator).enabled = false; 
 	}
 
@@ -26,13 +24,13 @@ class botaoVender extends MonoBehaviour {
 		valorMeth = textoMeth.getValor();
 		valorSujo = textoDinSujo.getValor();
 		
-		textoDinSujo.addValor(valorMeth);
+		textoDinSujo.addValor(valorMeth * precoUnidade);
 		textoMeth.setValor(0.0);
 	}
 	
 	function OnMouseDown() 
 	{
-		if (temMeth) 
+		if (temMeth()) 
 		{
 			vender();
 			GetComponent(Image).sprite = frames[1];
@@ -42,17 +40,21 @@ class botaoVender extends MonoBehaviour {
 	
 	function OnMouseEnter() 
 	{
-		var valorMeth = GameObject.Find("contadorMeth").GetComponent(textoMain).getValor();
-		
-		if (valorMeth > 0)
-			temMeth = true;
-		else
-			temMeth = false;
-		
-		if (!temMeth)
+		if (!temMeth())
 			GetComponent(Image).sprite = frames[1];
 		else 
 			GetComponent(Animator).enabled = true;
+	}
+	
+	// verifica se tem alguma meth produzida
+	function temMeth() 
+	{
+		var valorMeth = GameObject.Find("contadorMeth").GetComponent(textoMain).getValor();
+		
+		if (valorMeth > 0)
+			return true;
+		
+		return false;
 	}
 	
 	function OnMouseExit() 

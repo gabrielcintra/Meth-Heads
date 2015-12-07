@@ -1,8 +1,12 @@
 ﻿#pragma strict
+
+import UnityEngine.UI;
  
 class balaoFala extends MonoBehaviour{
  
+ 	var estaFalando : boolean;
  	var temMosca : boolean;
+ 	
 	var balaoFala : GameObject;
 	var balaoTexto : Text;
 	
@@ -27,45 +31,82 @@ class balaoFala extends MonoBehaviour{
 	var falasIRS2 = ["IRS is watching us.", "Be careful with IRS."];
 	
 	var falasDEAIRS = ["Shit...IRS took our money"];
-	 
+	
+	// FALAS INDEXADAS
+	var falasIngredientes = ["You don't have ingredients!", "How can you cook without ingredients?", "Look your material to cook first."];
+	var falasDinheiro = ["Go get some money, bitch!", "No money, bro.", "You can't buy without money.", "Look your money."];
+	//--------------------------
+	
 	function Start() 
 	{
 		balaoFala = GameObject.Find("balaoFala");
 		balaoTexto = GameObject.Find("FalaWW").GetComponent(Text);
 		
 		balaoFala.SetActive(false);
-		Invoke("falar", Random.Range(4, 10));
-	}
-	
-	function Update()
-	{
-		if (GameObject.Find("Mosca") == null)
-			temMosca = false;
-		else
-			temMosca = true;
+		Invoke("falar", Random.Range(4, 15));
 	}
 
 	function falar() 
 	{
 		var falas : String[];
-		var texto : String;
+		var texto: String;
+		var temMosca = GameObject.Find("Mosca");
 		
-		if (temMosca)
+		if (temMosca != null)
 			falas = falasMosca;
 		else
 			falas = falasNormal;
 			
 		texto = falas[Random.Range(0, falas.length-1)];
 		
-		balaoTexto.text = texto;
-		balaoFala.SetActive(true);
+		falar(texto);
+	}
+	
+	// Utiliza as falas indexadas la de cima
+	function falar(tipo : int)
+	{
+		// 0 - falas de ingrediente faltando
+		// 1 - falas de falta de dinheiro
 		
-		Invoke("calar", texto.length - (texto.length/2) - (texto.length/2)/2);
+		var texto : String;
+		var falas : String[];
+		
+		switch(tipo) {
+			case 0:
+				falas = falasIngredientes;
+				break;
+			case 1:
+				falas = falasDinheiro;
+				break;
+		}
+		
+		texto = falas[Random.Range(0, falas.length-1)];
+		
+		falar(texto);
+	}
+	
+	function falar(texto : String)
+	{
+		if (!estaFalando) {
+			CancelInvoke("falar");
+			estaFalando = true;
+			
+			balaoTexto.text = texto;
+			balaoFala.SetActive(true);
+			
+			var tempo = texto.length;
+			if (tempo > 5)
+				tempo = 5;
+			
+			Invoke("calar", tempo);
+		}
 	}
 	
 	function calar() 
 	{	
 		balaoFala.SetActive(false);
+		estaFalando = false;
+		
 		Invoke("falar", Random.Range(4, 10));
 	}
 	

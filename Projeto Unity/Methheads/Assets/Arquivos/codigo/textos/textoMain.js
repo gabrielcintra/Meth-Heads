@@ -16,7 +16,7 @@ class textoMain extends MonoBehaviour {
 
 	function Update () 
 	{
-		textoValor.text = prefixo + Main.organizarValor(valor) + sufixo;
+		textoValor.text = prefixo + organizarValor(valor) + sufixo;
 	}
 	
 	function getValor() {
@@ -25,12 +25,46 @@ class textoMain extends MonoBehaviour {
 	
 	function addValor(valor : long)
 	{
+		if (valor < 0)
+			valor = 0;
+			
 		this.valor += valor;
 	}
 	
 	function setValor(valor : long)
 	{
+		if (valor < 0)
+			valor = 0;
+	
 		this.valor = valor;
 	}
+	
+	function organizarValor(valor : long) 
+    {
+        var tamanho = valor.ToString().length;
+        var valorString = "";
+        var valores = ["", "k", "m", "bi", "tri"];
+
+        if (tamanho >= 4) {
+            for (var i = 0; i < 3; i++) {
+                if (i == 1)
+                    valorString += ".";
+			
+                valorString += valor.ToString()[i];
+            }
+			
+            var index = 0;
+            for (var j = 4; j < 15; j=j+3) {
+                var diferenca = tamanho - j;
+                if (diferenca >= 0)
+                    index++;
+            }
+		
+            valorString += valores[index];
+
+        } else valorString += valor.ToString();
+	
+        return valorString;
+    }
 	
 }
