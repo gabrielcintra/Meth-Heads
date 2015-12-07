@@ -11,6 +11,7 @@ var menuAberto : boolean;
 function Start () {
     menuRadio.SetActive(false);
     menuAberto = false;
+    DontDestroyOnLoad(transform.gameObject);
 }
 
 function iniciar(){
