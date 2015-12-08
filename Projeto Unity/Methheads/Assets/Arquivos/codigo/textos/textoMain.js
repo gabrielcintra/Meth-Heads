@@ -23,12 +23,15 @@ class textoMain extends MonoBehaviour {
 		return valor;
 	}
 	
-	function addValor(valor : long)
+	function addValor(valor : long, contador : String)
 	{
 		if (valor < 0)
 			valor = 0;
 			
 		this.valor += valor;
+
+		if (contador != null)
+		    GameObject.Find(contador).GetComponent(contadorInstantaneo).contar(valor);
 	}
 	
 	function setValor(valor : long)

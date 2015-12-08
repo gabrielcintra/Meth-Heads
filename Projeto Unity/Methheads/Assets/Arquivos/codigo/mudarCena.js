@@ -2,7 +2,7 @@
 
     //clicou no botao mudou a cena
  function LoadNextLevel(name : String){
-  StartCoroutine(LevelLoad(name));
+  LevelLoad(name);
 } 
 
     //da load no level depois de um segundo

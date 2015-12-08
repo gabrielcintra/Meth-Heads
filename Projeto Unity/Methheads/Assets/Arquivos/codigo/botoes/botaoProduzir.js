@@ -25,7 +25,7 @@ class botaoProduzir extends MonoBehaviour {
 
 	function produzir()
 	{
-		textoMeth = GameObject.Find("contadorMeth").GetComponent(textoMain);
+	    textoMeth = GameObject.Find("contadorMeth").GetComponent(textoMain);
 		
 		for each (ingrediente in ingredientes) {
 			if (ingrediente.GetComponent(Ingrediente).getQuantidade() <= 0) {
@@ -37,7 +37,7 @@ class botaoProduzir extends MonoBehaviour {
 		for each (ingrediente in ingredientes)
 			ingrediente.GetComponent(Ingrediente).remover();
 			
-		textoMeth.addValor(1.0);
+		textoMeth.addValor(1.0, "contadorInstantaneoMeth");
 	}
 
 }

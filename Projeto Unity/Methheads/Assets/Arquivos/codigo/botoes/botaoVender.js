@@ -24,7 +24,7 @@ class botaoVender extends MonoBehaviour {
 		valorMeth = textoMeth.getValor();
 		valorSujo = textoDinSujo.getValor();
 		
-		textoDinSujo.addValor(valorMeth * precoUnidade);
+		textoDinSujo.addValor(valorMeth * precoUnidade, "contadorInstantaneoSell");
 		textoMeth.setValor(0.0);
 	}
 	
