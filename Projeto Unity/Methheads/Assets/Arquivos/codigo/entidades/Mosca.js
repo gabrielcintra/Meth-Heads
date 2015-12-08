@@ -25,7 +25,7 @@ class Mosca extends MonoBehaviour {
 	// tenta fazer a mosca surgir na tela (6% de chance)
 	function tentaAparecer() 
 	{
-		var chance = Random.Range(0, 15);
+		var chance = 5;//Random.Range(0, 15);
 		
 		if (chance == 5) {
 			aparecer();
