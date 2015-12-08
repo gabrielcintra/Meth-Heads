@@ -5,3 +5,7 @@ var texturaCursorDefault : Texture2D;
 var texturaCursorEmCima : Texture2D;
 var modoCursor : CursorMode = CursorMode.Auto;
 var hotSpot : Vector2 = Vector2.zero;
+
+function Start(){
+    Cursor.SetCursor(texturaCursorDefault,hotSpot,modoCursor);
+}
