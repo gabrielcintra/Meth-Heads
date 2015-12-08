@@ -1,17 +1,16 @@
 ﻿#pragma strict
 
 var menuRadio : GameObject;
-var audioManager : AudioSource;
 var sons : AudioClip[];
-var menuAberto : boolean;
-
+private var audioManager : AudioSource;
+private var menuAberto : boolean;
 
 ///todas as declarações foram feitas no inspector
 
 function Start () {
     menuRadio.SetActive(false);
     menuAberto = false;
-    DontDestroyOnLoad(transform.gameObject);
+    audioManager = GameObject.Find("musicaRadio").GetComponent(AudioSource);
 }
 
 function iniciar(){
