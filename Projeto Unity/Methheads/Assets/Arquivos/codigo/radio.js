@@ -11,6 +11,7 @@ function Start () {
     menuRadio.SetActive(false);
     menuAberto = false;
     audioManager = GameObject.Find("musicaRadio").GetComponent(AudioSource);
+    checarTamanho();
 }
 
 function iniciar(){
@@ -32,6 +33,7 @@ function passar(){
         audioManager.clip = sons[0];
         audioManager.Play();
     }
+    checarTamanho();
 }
 
 function abrirFecharMenu(){
@@ -42,5 +44,15 @@ function abrirFecharMenu(){
     else{
         menuRadio.SetActive(false);
         menuAberto = false;
+    }
+}
+
+function checarTamanho(){
+    if (audioManager.clip.length > 120){
+        audioManager.loop = false;
+        Invoke("passar", audioManager.clip.length);
+    }
+    else{
+        audioManager.loop = true;
     }
 }
