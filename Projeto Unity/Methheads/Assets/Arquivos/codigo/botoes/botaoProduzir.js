@@ -29,7 +29,7 @@ class botaoProduzir extends MonoBehaviour {
 		
 		for each (ingrediente in ingredientes) {
 			if (ingrediente.GetComponent(Ingrediente).getQuantidade() <= 0) {
-				balaoFalas.falar(0);
+				balaoFalas.falar(0); // 0 indica que nao possui ingredientes
 				return;
 			}
 		}

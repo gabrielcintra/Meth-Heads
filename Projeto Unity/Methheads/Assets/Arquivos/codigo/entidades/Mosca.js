@@ -36,6 +36,10 @@ class Mosca extends MonoBehaviour {
 	function aparecer() 
 	{ 
 		moscaObjeto.SetActive(true);
+		
+		moscaObjeto.transform.position.x = 0.0;
+		moscaObjeto.transform.position.y = 0.0;
+		
 		moverMosca();
 	}
 	

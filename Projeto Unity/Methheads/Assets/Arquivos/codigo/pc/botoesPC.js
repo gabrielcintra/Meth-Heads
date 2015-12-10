@@ -16,6 +16,7 @@ function OnMouseExit(){
 }
 
 function OnMouseDown(){
+    
     Cursor.SetCursor(cursorManager.texturaCursorAbrindo,cursorManager.hotSpot,cursorManager.modoCursor);
  
     if (imagem_barratarefas != null){
