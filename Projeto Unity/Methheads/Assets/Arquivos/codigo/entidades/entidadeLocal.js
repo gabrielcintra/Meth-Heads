@@ -8,12 +8,25 @@ class entidadeLocal extends MonoBehaviour {
 	
 	var dealers = new Array();
 	var cookers = new Array();
-
 	var pureza = new Array();
 	var laboratorios = new Array();
 	var transportes = new Array();
 	
-	var laboratorio : Laboratorio;
+	var laboratorio : objetoLab;
+	
+	var tipos : String[];
+	var tiposListas : Array[];
+	
+	function Start()
+	{
+		tipos = ["dealer", "cooker", "pureza", "transporte", "laboratorio"];
+		tiposListas = [dealers, cookers, pureza, laboratorios, transportes];
+	}
+	
+	function Update()
+	{
+		Start();
+	}
 	
 	function aumentarDinheiro(tipo : String,  quantidade : float) 
 	{
@@ -45,6 +58,14 @@ class entidadeLocal extends MonoBehaviour {
 		return valor;
 	}
 	
+	function getDinheiro(tipo : String)
+	{
+		if (tipo == "limpo")
+			return dinheiroLimpo;
+		
+		return dinheiroSujo;
+	}
+	
 	function temDinheiro(tipo : String, valor : float)
 	{
 		if (tipo == "limpo")
@@ -58,34 +79,52 @@ class entidadeLocal extends MonoBehaviour {
 		return false;
 	}
 	
-	function adicionar(dealer : Dealer) 
+	function temDinheiro(tipo : String)
 	{
-		dealers.Add(dealer);
-	}
-	
-	function adicionar(cooker : Cooker) 
-	{
-		cookers.Add(cooker);
-	}
-	
-	function adicionar(objeto : objetoPureza) 
-	{
-		pureza.Add(objeto);
-	}
-	
-	function adicionar(laboratorio : Laboratorio) 
-	{
-		laboratorios.Add(laboratorio);
-	}
-	
-	function adicionar(transporte : objetoTransporte) 
-	{
-		transportes.Add(transporte);
-	}
-	
-	function adicionarPrincipal(lab : Laboratorio) 
-	{
-		laboratorio = lab;
+		if (tipo == "limpo")
+			if (dinheiroLimpo > 0)
+				return true;
+		
+		if (tipo == "sujo")
+			if (dinheiroSujo > 0)
+				return true;
+		
+		return false;
 	}
 
+	function novoLaboratorio(lab : objetoLab) 
+	{ 
+		laboratorio = lab; 
+	}
+	
+	function adicionar(objeto : Objeto) 
+	{	
+		for (var i = 0; i < tipos.length; i++)
+			if (objeto.getTipo() == tipos[i]) {
+				tiposListas[i].Add(objeto);
+				return true;
+			}
+				
+		return false;
+	}
+	
+	function remover(objeto : Objeto) 
+	{	
+		var i : int;
+		for (i = 0; i < tipos.length; i++)
+			if (objeto.getTipo() == tipos[i])
+				break;
+			
+		var aux : Objeto;	
+		for (var j = 0; j < tiposListas[i].length; j++) {
+			aux = tiposListas[i][j];
+			if (aux.getNome() == objeto.getNome()) {
+				tiposListas[i].RemoveAt(j);
+				return true;
+			}
+				
+		}
+			
+		return false;
+	}
 }
