@@ -2,6 +2,9 @@
 
 class objetoTransporte extends Objeto {
 
+    var atributoCapacidade : float;
+    var atributoCapTexto : String;
+
 	function Start()
 	{
 		super();
@@ -10,6 +13,15 @@ class objetoTransporte extends Objeto {
 	function getFilho()
 	{
 		return this;
+	}
+
+	function getCapacidade(){
+	    return atributoCapacidade;
+	}
+
+	function getCapTexto()
+	{
+	    return atributoCapTexto + " " + atributoCapacidade;
 	}
 	
 }
