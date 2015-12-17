@@ -4,12 +4,13 @@ class Objeto extends MonoBehaviour {
 
 	var entidade : entidadeLocal;
 
-	var nome : String;
+	private var nome : String;
 	var tipo : String;
 	var descricao : String;
 	var valor : float;
 	
 	var atributo : float;
+
 	var atributoTexto : String;
 	
 	// textos que sao exibidos na loja
@@ -17,17 +18,25 @@ class Objeto extends MonoBehaviour {
 	
 	function Start() 
 	{ 
+	    nome = gameObject.name;       
 		atualizarValores();
 	}
 	
 	function atualizarValores()
 	{
-		atributos = [nome, valor.ToString(), descricao, getAtributoTexto()];
-		
-		var objetoPai = gameObject;
-		for(var i = 3; i < 7; i++)
-            objetoPai.transform.GetChild(i).GetComponent(Text).text = atributos[i-3];
-	}
+	    var numeroCriancas = 7;
+
+	    if (tipo == "transporte"){
+	        atributos = [nome, valor.ToString(), descricao, getAtributoTexto(), getCapTexto()];
+	        numeroCriancas = 8;
+	    }
+	    else{
+	        atributos = [nome, valor.ToString(), descricao, getAtributoTexto()];
+	    }
+	        var objetoPai = gameObject;
+	        for(var i = 3; i < numeroCriancas; i++)
+	            objetoPai.transform.GetChild(i).GetComponent(Text).text = atributos[i-3];
+    }
 	
 	function comprar()
 	{
@@ -80,5 +89,6 @@ class Objeto extends MonoBehaviour {
 	
 	// metodo morto, sera reescrito pelo filho
 	function getFilho() { return this; }
+	function getCapTexto(){return ""; }
 
 }

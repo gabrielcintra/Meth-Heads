@@ -11,6 +11,7 @@ class entidadeLocal extends MonoBehaviour {
 	var pureza = new Array();
 	var laboratorios = new Array();
 	var transportes = new Array();
+	var empresas = new Array();
 	
 	var laboratorio : objetoLab;
 	
@@ -19,8 +20,8 @@ class entidadeLocal extends MonoBehaviour {
 	
 	function Start()
 	{
-		tipos = ["dealer", "cooker", "pureza", "transporte", "laboratorio"];
-		tiposListas = [dealers, cookers, pureza, laboratorios, transportes];
+		tipos = ["dealer", "cooker", "pureza", "transporte", "laboratorio", "empresa"];
+		tiposListas = [dealers, cookers, pureza, laboratorios, transportes, empresas];
 	}
 	
 	function Update()
