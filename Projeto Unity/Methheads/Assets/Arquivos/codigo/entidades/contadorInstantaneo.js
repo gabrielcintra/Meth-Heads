@@ -12,14 +12,14 @@ function Start () {
     posInicial = gameObject.transform.position.y;
 }
 
-function contar(valor : float){
+function contar(valor : float) {
     gameObject.transform.position.y = posInicial;
     gameObject.GetComponent(Text).text = "+" + valor;
     gameObject.GetComponent(CanvasGroup).alpha = 1;
     subir_apagar();
 }
 
-    function subir_apagar(){
+function subir_apagar() {
         CancelInvoke("subir_apagar");
         this.gameObject.transform.position.y += velocidade;
         canvas.alpha -= velocidade;

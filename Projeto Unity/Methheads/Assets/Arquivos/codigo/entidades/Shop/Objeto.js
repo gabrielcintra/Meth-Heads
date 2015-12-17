@@ -8,16 +8,18 @@ class Objeto extends MonoBehaviour {
 	var tipo : String;
 	var descricao : String;
 	var valor : float;
+	var valorTexto : String;
 	
 	var atributo : float;
-
-	var atributoTexto : String;
+	var atributoTexto : String; // improve by, transport in...
 	
 	// textos que sao exibidos na loja
 	var atributos : String[];
 	
 	function Start() 
 	{ 
+		entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
+	
 	    nome = gameObject.name;       
 		atualizarValores();
 	}
@@ -25,41 +27,35 @@ class Objeto extends MonoBehaviour {
 	function atualizarValores()
 	{
 	    var numeroCriancas = 7;
+	    var objetoPai = gameObject;
 
-	    if (tipo == "transporte"){
-	        atributos = [nome, valor.ToString(), descricao, getAtributoTexto(), getCapTexto()];
+	    if (tipo == "transporte") {
+	        atributos = [nome, getValorText(), descricao, getAtributoTexto(), getCapTexto()];
 	        numeroCriancas = 8;
+	    } else {
+	        atributos = [nome, getValorText(), descricao, getAtributoTexto()];
 	    }
-	    else{
-	        atributos = [nome, valor.ToString(), descricao, getAtributoTexto()];
-	    }
-	        var objetoPai = gameObject;
-	        for(var i = 3; i < numeroCriancas; i++)
-	            objetoPai.transform.GetChild(i).GetComponent(Text).text = atributos[i-3];
+
+        for(var i = 3; i < numeroCriancas; i++)
+            objetoPai.transform.GetChild(i).GetComponent(Text).text = atributos[i-3];
     }
 	
 	function comprar()
 	{
 		if (entidade.temDinheiro("limpo", valor)) {
-			entidade.diminuirDinheiro("limpo", valor);
+			entidade.atualizarDinheiro("limpo", valor*-1);
 			entidade.adicionar(getFilho());
-			print ("tem dinheiro");
-			print (entidade.getDinheiro("limpo"));
-		} else print ("sem dinheiro");
+		}
 		
 		atualizarValores();
 	}
 	
 	function vender()
 	{
-		if (entidade.remover(getFilho())) {
-			entidade.aumentarDinheiro("limpo", valor);
-			print ("removido com sucesso");
-			print (entidade.getDinheiro("limpo"));
-			return;
-		}
-		
-		print ("nao tem");
+		if (entidade.remover(getFilho()))
+			entidade.atualizarDinheiro("limpo", valor);
+			
+		atualizarValores();
 	}
 	
 	function getNome()
@@ -72,6 +68,11 @@ class Objeto extends MonoBehaviour {
 		return valor;
 	}
 	
+	function getValorText()
+	{
+		return "$ " + entidade.organizarValor(valor);
+	}
+	
 	function getTipo()
 	{
 		return tipo;
@@ -82,9 +83,15 @@ class Objeto extends MonoBehaviour {
 		return atributo;
 	}
 	
+	// "dealer", "cooker", "pureza", "transporte", "laboratorio", "empresa"
 	function getAtributoTexto()
 	{
-		return atributoTexto + " " + atributo;
+		var finalFrase = atributo.ToString();
+		
+		if (tipo == "pureza" || tipo == "transporte")
+			finalFrase = atributo*100 + "%";
+			
+		return atributoTexto + " " + finalFrase;
 	}
 	
 	// metodo morto, sera reescrito pelo filho

@@ -1,13 +1,25 @@
 ﻿#pragma strict
 
-static var jaTem : boolean;
+static var temRadio : boolean;
+static var temEntidade : boolean;
 
-function Awake () {
-    if (jaTem){
-        Destroy(gameObject);
-}
-    else{
-        DontDestroyOnLoad(gameObject);
-        jaTem = true;
-    }
+function Awake () 
+{
+    if (gameObject.name == "musicaRadio"){
+    	if (temRadio)
+        	Destroy(gameObject);
+    	else {
+        	DontDestroyOnLoad(gameObject);
+        	temRadio = true;
+		}
+	}
+	
+	else if(gameObject.name == "Entidade"){
+		if (temEntidade)
+    		Destroy(gameObject);
+    	else {
+        	DontDestroyOnLoad(gameObject);
+        	temEntidade = true;
+		}
+	}
 }

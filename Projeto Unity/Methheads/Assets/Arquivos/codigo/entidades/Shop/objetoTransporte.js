@@ -21,7 +21,7 @@ class objetoTransporte extends Objeto {
 
 	function getCapTexto()
 	{
-	    return atributoCapTexto + " " + atributoCapacidade;
+	    return atributoCapTexto + " " + atributoCapacidade + "lb";
 	}
 	
 }

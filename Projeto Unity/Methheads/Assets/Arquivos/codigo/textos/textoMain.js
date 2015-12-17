@@ -2,72 +2,25 @@
 
 class textoMain extends MonoBehaviour {
 
+	var entidade : entidadeLocal;
+	
+	var tipo : String;
 	var valor : long;
+	var textoValor : Text; // objeto do tipo texto que mostra o valor
 	
 	var prefixo : String;
 	var sufixo : String;
-	
-	var textoValor : Text;
 
 	function Start () 
 	{
+		entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
 		textoValor = gameObject.GetComponent(Text);
+		valor = entidade.getValor(tipo);
 	}
 
 	function Update () 
 	{
-		textoValor.text = prefixo + organizarValor(valor) + sufixo;
+		valor = entidade.getValor(tipo);
+		textoValor.text = prefixo + entidade.organizarValor(valor) + sufixo;
 	}
-	
-	function getValor() {
-		return valor;
-	}
-	
-	function addValor(valor : long, contador : String)
-	{
-		if (valor < 0)
-			valor = 0;
-			
-		this.valor += valor;
-
-		if (contador != null)
-		    GameObject.Find(contador).GetComponent(contadorInstantaneo).contar(valor);
-	}
-	
-	function setValor(valor : long)
-	{
-		if (valor < 0)
-			valor = 0;
-	
-		this.valor = valor;
-	}
-	
-	function organizarValor(valor : long) 
-    {
-        var tamanho = valor.ToString().length;
-        var valorString = "";
-        var valores = ["", "k", "m", "bi", "tri"];
-
-        if (tamanho >= 4) {
-            for (var i = 0; i < 3; i++) {
-                if (i == 1)
-                    valorString += ".";
-			
-                valorString += valor.ToString()[i];
-            }
-			
-            var index = 0;
-            for (var j = 4; j < 15; j=j+3) {
-                var diferenca = tamanho - j;
-                if (diferenca >= 0)
-                    index++;
-            }
-		
-            valorString += valores[index];
-
-        } else valorString += valor.ToString();
-	
-        return valorString;
-    }
-	
 }

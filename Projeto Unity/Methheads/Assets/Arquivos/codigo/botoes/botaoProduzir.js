@@ -2,11 +2,19 @@
 
 class botaoProduzir extends MonoBehaviour {
 
+	var entidade : entidadeLocal;
+
 	var frames : Sprite[]; // 0 - normal / 1 - destacado
 	var ingredientes : GameObject[];
 	
-	var textoMeth : textoMain;
 	var balaoFalas : balaoFala;
+	var contador : contadorInstantaneo;
+	
+	function Start()
+	{
+		entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
+		contador = GameObject.Find("contadorInstantaneoMeth").GetComponent(contadorInstantaneo);
+	}
 
 	function OnMouseEnter()
 	{
@@ -25,10 +33,8 @@ class botaoProduzir extends MonoBehaviour {
 
 	function produzir()
 	{
-	    textoMeth = GameObject.Find("contadorMeth").GetComponent(textoMain);
-		
 		for each (ingrediente in ingredientes) {
-			if (ingrediente.GetComponent(Ingrediente).getQuantidade() <= 0) {
+			if (ingrediente.GetComponent(Ingrediente).getQuantidade() <= 0) { // se nao tem ingredientes:
 				balaoFalas.falar(0); // 0 indica que nao possui ingredientes
 				return;
 			}
@@ -37,7 +43,8 @@ class botaoProduzir extends MonoBehaviour {
 		for each (ingrediente in ingredientes)
 			ingrediente.GetComponent(Ingrediente).remover();
 			
-		textoMeth.addValor(1.0, "contadorInstantaneoMeth");
+		entidade.atualizarMeth(1.0);
+		contador.contar(1.0);
 	}
 
 }

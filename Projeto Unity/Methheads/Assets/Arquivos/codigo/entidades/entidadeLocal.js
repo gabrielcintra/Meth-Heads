@@ -6,6 +6,10 @@ class entidadeLocal extends MonoBehaviour {
 	var dinheiroLimpo : long;
 	var dinheiroSujo : long;
 	
+	var precoUnidade : long; // preco da unidade de meth
+	var ingredientes : float[]; // quantidade de ingredientes
+	var nomeIngredientes : String[];
+	
 	var dealers = new Array();
 	var cookers = new Array();
 	var pureza = new Array();
@@ -20,37 +24,34 @@ class entidadeLocal extends MonoBehaviour {
 	
 	function Start()
 	{
+		nomeIngredientes = ["naoh", "hcl", "h2so4", "metilamina"];
 		tipos = ["dealer", "cooker", "pureza", "transporte", "laboratorio", "empresa"];
 		tiposListas = [dealers, cookers, pureza, laboratorios, transportes, empresas];
 	}
 	
-	function Update()
+	function atualizarMeth(valor : float)
 	{
-		Start();
+		methProduzida += valor;
 	}
 	
-	function aumentarDinheiro(tipo : String,  quantidade : float) 
+	function atualizarIngrediente(nome : String, valor : float)
 	{
-		if (quantidade < 0)
-			return;
-	
-		if (tipo == "limpo") 
-			dinheiroLimpo += quantidade;
-		if (tipo == "sujo")
-			dinheiroSujo += quantidade;
+		for (var i=0; i < nomeIngredientes.length; i++)
+			if (nome == nomeIngredientes[i])
+				ingredientes[i] += valor;
 	}
 	
-	function diminuirDinheiro(tipo : String,  quantidade : float) 
+	function atualizarDinheiro(tipo : String,  valor : float) 
 	{
 		if (tipo == "limpo") 
-			dinheiroLimpo -= quantidade;
+			dinheiroLimpo += valor;
 		if (tipo == "sujo")
-			dinheiroSujo -= quantidade;
+			dinheiroSujo += valor;
 			
 		dinheiroLimpo = checaNegativo(dinheiroLimpo);
 		dinheiroSujo = checaNegativo(dinheiroSujo);
 	}
-	
+
 	function checaNegativo(valor : long)
 	{
 		if (valor < 0)
@@ -59,22 +60,14 @@ class entidadeLocal extends MonoBehaviour {
 		return valor;
 	}
 	
-	function getDinheiro(tipo : String)
-	{
-		if (tipo == "limpo")
-			return dinheiroLimpo;
-		
-		return dinheiroSujo;
-	}
-	
 	function temDinheiro(tipo : String, valor : float)
 	{
 		if (tipo == "limpo")
-			if (dinheiroLimpo - valor > 0)
+			if (dinheiroLimpo - valor >= 0)
 				return true;
 		
 		if (tipo == "sujo")
-			if (dinheiroSujo - valor > 0)
+			if (dinheiroSujo - valor >= 0)
 				return true;
 		
 		return false;
@@ -127,5 +120,58 @@ class entidadeLocal extends MonoBehaviour {
 		}
 			
 		return false;
+	}
+	
+	function organizarValor(valor : long) 
+    {
+        var tamanho = valor.ToString().length;
+        var valorString = "";
+        var valores = ["", "k", "m", "bi", "tri"];
+
+        if (tamanho >= 4) {
+            for (var i = 0; i < 3; i++) {
+                if (i == 1)
+                    valorString += ".";
+			
+                valorString += valor.ToString()[i];
+            }
+			
+            var index = 0;
+            for (var j = 4; j < 15; j=j+3) {
+                var diferenca = tamanho - j;
+                if (diferenca >= 0)
+                    index++;
+            }
+		
+            valorString += valores[index];
+
+        } else valorString += valor.ToString();
+	
+       
+        return valorString;
+    }
+   
+    function getValor(tipo : String)
+	{
+		if (tipo == "limpo")
+			return dinheiroLimpo;
+		if (tipo == "sujo")
+			return dinheiroSujo;
+		
+		return methProduzida;
+	}
+	
+	function getIngrediente(nome : String)
+	{
+		for (var i=0; i < nomeIngredientes.length; i++)
+			if (nome == nomeIngredientes[i])
+				return ingredientes[i];
+				
+		return -1;	
+	}
+	
+	function getPrecoUnidade()
+	{
+		return precoUnidade;
 	}
 }
