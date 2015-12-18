@@ -19,8 +19,8 @@ class entidadeLocal extends MonoBehaviour {
 	
 	var laboratorio : objetoLab;
 	
-	var tipos : String[];
-	var tiposListas : Array[];
+	var tipos : String[]; // nome dos tipos de objetos que a entidade administra
+	var tiposListas : Array[]; // as listas de cada tipo de objeto (lista de cookers, lista de dealers, etc)
 	
 	function Start()
 	{
@@ -29,11 +29,13 @@ class entidadeLocal extends MonoBehaviour {
 		tiposListas = [dealers, cookers, pureza, laboratorios, transportes, empresas];
 	}
 	
+	// altera a quantidade de meth produzida (para mais ou menos)
 	function atualizarMeth(valor : float)
 	{
 		methProduzida += valor;
 	}
 	
+	// altera a quantidade de certo ingrediente
 	function atualizarIngrediente(nome : String, valor : float)
 	{
 		for (var i=0; i < nomeIngredientes.length; i++)
@@ -41,6 +43,7 @@ class entidadeLocal extends MonoBehaviour {
 				ingredientes[i] += valor;
 	}
 	
+	// altera o valor de dado tipo de dinheiro
 	function atualizarDinheiro(tipo : String,  valor : float) 
 	{
 		if (tipo == "limpo") 
@@ -52,6 +55,7 @@ class entidadeLocal extends MonoBehaviour {
 		dinheiroSujo = checaNegativo(dinheiroSujo);
 	}
 
+	// checa se eh negativo e retorna 0 se for
 	function checaNegativo(valor : long)
 	{
 		if (valor < 0)
@@ -60,6 +64,7 @@ class entidadeLocal extends MonoBehaviour {
 		return valor;
 	}
 	
+	// checa se tem certo tipo de dinheiro apos remover dado valor
 	function temDinheiro(tipo : String, valor : float)
 	{
 		if (tipo == "limpo")
@@ -73,6 +78,7 @@ class entidadeLocal extends MonoBehaviour {
 		return false;
 	}
 	
+	// checa se tem certo tipo de dinheiro
 	function temDinheiro(tipo : String)
 	{
 		if (tipo == "limpo")
@@ -86,11 +92,13 @@ class entidadeLocal extends MonoBehaviour {
 		return false;
 	}
 
+	// seta o novo laboratorio principal
 	function novoLaboratorio(lab : objetoLab) 
 	{ 
 		laboratorio = lab; 
 	}
 	
+	// adiciona um novo objeto (dealer, cooker) para o jogador
 	function adicionar(objeto : Objeto) 
 	{	
 		for (var i = 0; i < tipos.length; i++)
@@ -102,6 +110,7 @@ class entidadeLocal extends MonoBehaviour {
 		return false;
 	}
 	
+	// remove algum objeto (dealer, cooker, etc) que o jogador comprou
 	function remover(objeto : Objeto) 
 	{	
 		var i : int;
@@ -122,6 +131,7 @@ class entidadeLocal extends MonoBehaviour {
 		return false;
 	}
 	
+	// adiciona o sufixo k, m, bi ou tri
 	function organizarValor(valor : long) 
     {
         var tamanho = valor.ToString().length;
@@ -151,6 +161,7 @@ class entidadeLocal extends MonoBehaviour {
         return valorString;
     }
    
+    // retorna quanto o usuario tem de dinheiro ou meth
     function getValor(tipo : String)
 	{
 		if (tipo == "limpo")
@@ -161,6 +172,7 @@ class entidadeLocal extends MonoBehaviour {
 		return methProduzida;
 	}
 	
+	// retorna a quantidade de certo ingrediente ou -1 se nao existe
 	function getIngrediente(nome : String)
 	{
 		for (var i=0; i < nomeIngredientes.length; i++)
