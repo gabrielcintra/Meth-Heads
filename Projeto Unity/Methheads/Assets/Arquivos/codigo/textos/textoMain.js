@@ -5,7 +5,7 @@ class textoMain extends MonoBehaviour {
 	var entidade : entidadeLocal;
 	
 	var tipo : String;
-	var valor : long; // valor que o texto guarda
+	var valor : long;
 	var textoValor : Text; // objeto do tipo texto que mostra o valor
 	
 	var prefixo : String;
@@ -14,8 +14,8 @@ class textoMain extends MonoBehaviour {
 	function Start () 
 	{
 		entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
-		
 		textoValor = gameObject.GetComponent(Text);
+		valor = entidade.getValor(tipo);
 	}
 
 	function Update () 
