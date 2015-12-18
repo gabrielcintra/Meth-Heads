@@ -1,53 +1,88 @@
 ﻿#pragma strict
 
-static var numeroDigitado : String;
-static var objetoTelefone : GameObject;
+class Telefone extends MonoBehaviour {
 
-var audioSource : AudioSource;
-var somOcupado : AudioClip;
-var somLigar : AudioClip;
-var somDesligar : AudioClip;
-var somDigitar : AudioClip;
+	var numeroDigitado : String;
+	var objetoTelefone : GameObject;
 
-function Start () {
-    objetoTelefone = GameObject.Find("telefoneInterface");
-}
+	var audioSource : AudioSource;
 
-function ativarTelefone(){
-    for(var l = 0; l < objetoTelefone.transform.childCount; ++l)
-        objetoTelefone.transform.GetChild(l).gameObject.SetActive(true);
-}
+	var nomeSom : String[];
+	var tipoSom : AudioClip[];
 
-function Desligar(){
-    numeroDigitado = "";
-    GameObject.Find("numeroDigitado").GetComponent(Text).text = "";
+	function Start() 
+	{
+		numeroDigitado = "";
+	    objetoTelefone = GameObject.Find("telefoneInterface");
+	}
+	
+	function Update()
+	{
+		if (GameObject.Find("numeroDigitado") != null)
+			GameObject.Find("numeroDigitado").GetComponent(Text).text = numeroDigitado;
+	}
 
-    for(var l = 0; l < objetoTelefone.transform.childCount; ++l)
-        objetoTelefone.transform.GetChild(l).gameObject.SetActive(false);
-}
+	function ativarTelefone()
+	{
+	    for(var l = 0; l < objetoTelefone.transform.childCount; ++l)
+	        objetoTelefone.transform.GetChild(l).gameObject.SetActive(true);
+	}
 
-function playDesligar(){
-    audioSource.clip = somDesligar;
-    audioSource.Play();
-}
+	function desativarTelefone()
+	{
+	    numeroDigitado = "";
 
-function playLigar(){
-    audioSource.clip = somLigar;
-    audioSource.Play();
-    Invoke("Desligar",somLigar.length);
-    
-}
+	    for(var l = 0; l < objetoTelefone.transform.childCount; ++l)
+	        objetoTelefone.transform.GetChild(l).gameObject.SetActive(false);
+	}
+	    
+	function Telefonar()
+	{
+		if (numeroDigitado == "")
+			return;
+		
+		switch(parseInt(numeroDigitado)) 
+	    {
+	        case 7655670:
+	            acaoPizza();
+	            break;
+	        
+	        default:
+	            tocarSom("ocupado");
+	            break;
+	    }
+	}
 
-function playOcupado(){
-    audioSource.clip = somOcupado;
-    audioSource.Play();
-}
+	function tocarSom(nome : String)
+	{	
+		for (var i=0; i < nomeSom.length; i++)
+			if (nomeSom[i] == nome)
+				 audioSource.clip = tipoSom[i];
+				 
+		audioSource.Play();
+	}
 
-function playDigitar(){
-    audioSource.clip = somDigitar;
-    audioSource.Play();
-}
+	function atualizarNum(adicao : String)
+	{
+		numeroDigitado += adicao;
+		tocarSom("digitar");
+	}
 
-function acaoPizza(){
-    print("ok");
+	function resetarNum()
+	{
+		audioSource.Stop();
+		numeroDigitado = "";
+	}
+
+	function getNum()
+	{
+		return numeroDigitado;
+	}
+
+	function acaoPizza()
+	{
+		tocarSom("ligar");
+		print ("Ok");
+	}
+
 }
