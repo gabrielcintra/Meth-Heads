@@ -1,9 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\arquivos\codigo\entidades\entidadeLocal.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\arquivos\codigo\botoes\botaoVender.js">
     <Files>
-      <File FileName="Assets\arquivos\codigo\entidades\entidadeLocal.js" Line="51" Column="25" />
-      <File FileName="Assets\arquivos\codigo\botoes\botaoVender.js" Line="70" Column="74" />
+      <File FileName="Assets\arquivos\codigo\botoes\botaoVender.js" Line="75" Column="27" />
     </Files>
     <Pads>
       <Pad Id="ClassPad">

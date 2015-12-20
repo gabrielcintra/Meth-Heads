@@ -3,11 +3,17 @@ import System.DateTime;
 
 var textoHora : Text;
 
-function Start(){
-    atualizarHora();
-}
+class managerPC extends MonoBehaviour {
 
-function atualizarHora(){
-    textoHora.text = "" + System.DateTime.Now.ToString("hh:mm");
-    Invoke("atualizarHora",60);
+	function Start()
+	{
+	    atualizarHora();
+	}
+
+	function atualizarHora()
+	{
+	    textoHora.text = "" + System.DateTime.Now.ToString("hh:mm");
+	    Invoke("atualizarHora", 60);
+	}
+
 }
