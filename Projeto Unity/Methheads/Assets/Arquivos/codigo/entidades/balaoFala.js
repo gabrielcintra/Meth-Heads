@@ -34,7 +34,7 @@ class balaoFala extends MonoBehaviour{
 	
 	// FALAS INDEXADAS
 	var falasIngredientes = ["You don't have ingredients!", "How can you cook without ingredients?", "Look your material to cook first."];
-	var falasDinheiro = ["Go get some money, bitch!", "No money, bro.", "You can't buy without money.", "Look your money."];
+	var falasDinheiro = ["Go get some money!", "No money for it.", "You can't buy without money.", "Look your money."];
 	//--------------------------
 	
 	function Start() 

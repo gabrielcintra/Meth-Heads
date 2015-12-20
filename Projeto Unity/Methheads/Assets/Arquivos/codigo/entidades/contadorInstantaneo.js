@@ -12,8 +12,9 @@ class contadorInstantaneo extends MonoBehaviour {
 	function Start () 
 	{
 	    canvas = gameObject.GetComponent(CanvasGroup);
+		posInicial = gameObject.transform.position.y;
+		   
 	    canvas.alpha = 0;
-	    posInicial = gameObject.transform.position.y;
 	}
 
 	function contar(valor : float) 

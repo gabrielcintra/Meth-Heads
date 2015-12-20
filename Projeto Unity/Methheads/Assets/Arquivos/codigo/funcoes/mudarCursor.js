@@ -1,23 +1,32 @@
 ﻿#pragma strict
 
-var texturaCursorAbrindo : Texture2D;
-var texturaCursorDefault : Texture2D;
-var texturaCursorEmCima : Texture2D;
-var modoCursor : CursorMode = CursorMode.Auto;
-var hotSpot : Vector2 = Vector2.zero;
+class mudarCursor extends MonoBehaviour {
 
-function Start(){
-    Cursor.SetCursor(texturaCursorDefault,hotSpot,modoCursor);
-}
+	var texturaCursorAbrindo : Texture2D;
+	var texturaCursorDefault : Texture2D;
+	var texturaCursorEmCima : Texture2D;
+	var modoCursor : CursorMode = CursorMode.Auto;
+	var hotSpot : Vector2 = Vector2.zero;
 
-function setCursorAbrindo(){
-    Cursor.SetCursor(texturaCursorAbrindo,hotSpot,modoCursor);
-}
+	function Start()
+	{
+	    Cursor.SetCursor(texturaCursorDefault,hotSpot,modoCursor);
+	}
 
-function setCursorDefault(){
-    Cursor.SetCursor(texturaCursorDefault,hotSpot,modoCursor);
-}
+	function setCursorAbrindo(tempo : int)
+	{
+	    Cursor.SetCursor(texturaCursorAbrindo,hotSpot,modoCursor);
+	    Invoke("setCursorDefault", tempo);
+	}
 
-function setCursorEmCima(){
-    Cursor.SetCursor(texturaCursorEmCima,hotSpot,modoCursor);
+	function setCursorEmCima()
+	{
+	    Cursor.SetCursor(texturaCursorEmCima,hotSpot,modoCursor);
+	}
+
+	function setCursorDefault()
+	{
+	    Cursor.SetCursor(texturaCursorDefault,hotSpot,modoCursor);
+	}
+
 }

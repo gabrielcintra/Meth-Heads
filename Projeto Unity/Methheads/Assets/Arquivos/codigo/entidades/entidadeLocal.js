@@ -3,7 +3,7 @@
 
 class entidadeLocal extends MonoBehaviour {
 
-	var laboratorio : objetoLab;
+	var ambiente : String;
 	
 	//------------ Funcionarios ---------------
 	
@@ -18,10 +18,12 @@ class entidadeLocal extends MonoBehaviour {
 	
 	var funcNomes : String[]; // nomes dos funcionarios
 	var funcListas : Array[]; // listas dos funcionarios
-	var longNomes : String[]; // nome dos valores long type
+	var longNomes : String[]; // nome dos valores que tem numeros (meth, dinheiro, etc)
 	var longListas : float[]; // listas que compoem os valores
 	
 	//-----------------------------------------
+	
+	var contadorMeth : contadorInstantaneo;
 	
 	function Start()
 	{
@@ -33,11 +35,15 @@ class entidadeLocal extends MonoBehaviour {
 		
 		funcNomes = ["dealer", "cooker", "pureza", "transporte", 
 		             "laboratorio", "empresa"];
+		             
+		if (ambiente != "pc" && ambiente != "quarto")
+			contadorMeth = GameObject.Find("contadorInstantaneoMeth").GetComponent(contadorInstantaneo);
 	
 		//carregarJogo()
 		novoJogo();
+		producaoAutomatica();
 	}
-	
+		
 	function novoJogo()
 	{
 		// longListas compoe: 
@@ -55,6 +61,26 @@ class entidadeLocal extends MonoBehaviour {
 		              
 		funcListas = [dealers, cookers, pureza, laboratorios, transportes, 
 		              empresas];
+	}
+	
+	function producaoAutomatica()
+	{
+		var producao = 0.0;
+		var cooker : Objeto;
+		
+		for each (cookerContratado in getFunc("cooker")) {
+			cooker = cookerContratado;
+			producao += cooker.getAtributo();
+		}
+			
+		if (producao > 0.0) {
+			atualizarValor("meth", producao);
+			
+			if (contadorMeth != null)
+				contadorMeth.contar(producao);
+		}
+
+		Invoke("producaoAutomatica", 1);
 	}
 
 	function atualizarValor(tipo : String,  valor : float) 
@@ -94,9 +120,9 @@ class entidadeLocal extends MonoBehaviour {
 		return false;
 	}
 
-	function novoLaboratorio(lab : objetoLab) 
+	function mudarAmbiente(ambiente : String) 
 	{ 
-		laboratorio = lab; 
+		this.ambiente = ambiente;
 	}
 	
 	function adicionar(objeto : Objeto) 
@@ -169,6 +195,15 @@ class entidadeLocal extends MonoBehaviour {
 				return longListas[i];
 				
 		return -1;
+	}
+	
+	function getFunc(tipo : String)
+	{
+		for (var i=0; i < funcNomes.length; i++)
+			if (tipo == funcNomes[i])
+				return funcListas[i];
+				
+		return null;
 	}
 	
 }
