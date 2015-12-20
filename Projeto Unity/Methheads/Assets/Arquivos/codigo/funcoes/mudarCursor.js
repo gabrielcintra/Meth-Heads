@@ -9,3 +9,15 @@ var hotSpot : Vector2 = Vector2.zero;
 function Start(){
     Cursor.SetCursor(texturaCursorDefault,hotSpot,modoCursor);
 }
+
+function setCursorAbrindo(){
+    Cursor.SetCursor(texturaCursorAbrindo,hotSpot,modoCursor);
+}
+
+function setCursorDefault(){
+    Cursor.SetCursor(texturaCursorDefault,hotSpot,modoCursor);
+}
+
+function setCursorEmCima(){
+    Cursor.SetCursor(texturaCursorEmCima,hotSpot,modoCursor);
+}
