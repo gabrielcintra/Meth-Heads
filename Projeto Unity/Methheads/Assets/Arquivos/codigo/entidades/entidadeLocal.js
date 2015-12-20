@@ -1,14 +1,11 @@
 ﻿#pragma strict
+#pragma downcast
 
 class entidadeLocal extends MonoBehaviour {
 
-	var methProduzida : long;
-	var dinheiroLimpo : long;
-	var dinheiroSujo : long;
+	var laboratorio : objetoLab;
 	
-	var precoUnidade : long; // preco da unidade de meth
-	var ingredientes : float[]; // quantidade de ingredientes
-	var nomeIngredientes : String[];
+	//------------ Funcionarios ---------------
 	
 	var dealers = new Array();
 	var cookers = new Array();
@@ -17,42 +14,64 @@ class entidadeLocal extends MonoBehaviour {
 	var transportes = new Array();
 	var empresas = new Array();
 	
-	var laboratorio : objetoLab;
+	//----------- Listas ----------------
 	
-	var tipos : String[];
-	var tiposListas : Array[];
+	var funcNomes : String[]; // nomes dos funcionarios
+	var funcListas : Array[]; // listas dos funcionarios
+	var longNomes : String[]; // nome dos valores long type
+	var longListas : float[]; // listas que compoem os valores
+	
+	//-----------------------------------------
 	
 	function Start()
 	{
-		nomeIngredientes = ["naoh", "hcl", "h2so4", "metilamina"];
-		tipos = ["dealer", "cooker", "pureza", "transporte", "laboratorio", "empresa"];
-		tiposListas = [dealers, cookers, pureza, laboratorios, transportes, empresas];
+		longNomes = ["meth", "limpo", "sujo", 
+		             "estresse", "estressePadrao", 
+		             "producaoUnidade", "precoUnidade", 
+		             "naoh", "hcl", "h2so4", "metilamina",
+		             "velocidadeVenda"];
+		
+		funcNomes = ["dealer", "cooker", "pureza", "transporte", 
+		             "laboratorio", "empresa"];
+	
+		//carregarJogo()
+		novoJogo();
 	}
 	
-	function atualizarMeth(valor : float)
+	function novoJogo()
 	{
-		methProduzida += valor;
-	}
-	
-	function atualizarIngrediente(nome : String, valor : float)
-	{
-		for (var i=0; i < nomeIngredientes.length; i++)
-			if (nome == nomeIngredientes[i])
-				ingredientes[i] += valor;
-	}
-	
-	function atualizarDinheiro(tipo : String,  valor : float) 
-	{
-		if (tipo == "limpo") 
-			dinheiroLimpo += valor;
-		if (tipo == "sujo")
-			dinheiroSujo += valor;
-			
-		dinheiroLimpo = checaNegativo(dinheiroLimpo);
-		dinheiroSujo = checaNegativo(dinheiroSujo);
+		// longListas compoe: 
+		// methProduzida - dinheiroLimpo - dinheiroSujo, 
+		// estresse  - estresse p/s    
+		// producao p/clique - preco p/unidade  
+		// naoh - hcl - h2so4 - metilamina
+		// quantos % a barra cresce a cada 100 ms
+		
+		longListas = [0.0, 0.0, 0.0, 
+		              0.0, 0.1, 
+		              1.5, 40.0, 
+		              100.0, 100.0, 100.0, 100.0,
+		              1.0];
+		              
+		funcListas = [dealers, cookers, pureza, laboratorios, transportes, 
+		              empresas];
 	}
 
-	function checaNegativo(valor : long)
+	function atualizarValor(tipo : String,  valor : float) 
+	{
+		for (var i=0; i < longNomes.length; i++) {
+			if (tipo == longNomes[i]) {
+				
+				longListas[i] += valor;
+				if (tipo == "limpo" || tipo == "sujo" || tipo == "meth")
+					longListas[i] = checaNegativo(longListas[i]);
+				
+				break;
+			}
+		}
+	}
+
+	function checaNegativo(valor : float)
 	{
 		if (valor < 0)
 			return 0;
@@ -60,29 +79,18 @@ class entidadeLocal extends MonoBehaviour {
 		return valor;
 	}
 	
-	function temDinheiro(tipo : String, valor : float)
+	function temValor(tipo : String)
 	{
-		if (tipo == "limpo")
-			if (dinheiroLimpo - valor >= 0)
-				return true;
-		
-		if (tipo == "sujo")
-			if (dinheiroSujo - valor >= 0)
-				return true;
-		
-		return false;
+		temValor(tipo, 0.0);
 	}
 	
-	function temDinheiro(tipo : String)
+	function temValor(tipo : String, valor : float)
 	{
-		if (tipo == "limpo")
-			if (dinheiroLimpo > 0)
-				return true;
-		
-		if (tipo == "sujo")
-			if (dinheiroSujo > 0)
-				return true;
-		
+		for (var i=0; i < longNomes.length; i++)
+			if (longNomes[i] == tipo)
+				if (longListas[i] - valor >= 0)
+					return true;
+
 		return false;
 	}
 
@@ -93,9 +101,9 @@ class entidadeLocal extends MonoBehaviour {
 	
 	function adicionar(objeto : Objeto) 
 	{	
-		for (var i = 0; i < tipos.length; i++)
-			if (objeto.getTipo() == tipos[i]) {
-				tiposListas[i].Add(objeto);
+		for (var i = 0; i < funcNomes.length; i++)
+			if (objeto.getTipo() == funcNomes[i]) {
+				funcListas[i].Add(objeto);
 				return true;
 			}
 				
@@ -105,15 +113,15 @@ class entidadeLocal extends MonoBehaviour {
 	function remover(objeto : Objeto) 
 	{	
 		var i : int;
-		for (i = 0; i < tipos.length; i++)
-			if (objeto.getTipo() == tipos[i])
+		for (i = 0; i < funcNomes.length; i++)
+			if (objeto.getTipo() == funcNomes[i])
 				break;
 			
 		var aux : Objeto;	
-		for (var j = 0; j < tiposListas[i].length; j++) {
-			aux = tiposListas[i][j];
+		for (var j = 0; j < funcListas[i].length; j++) {
+			aux = funcListas[i][j];
 			if (aux.getNome() == objeto.getNome()) {
-				tiposListas[i].RemoveAt(j);
+				funcListas[i].RemoveAt(j);
 				return true;
 			}
 				
@@ -122,18 +130,22 @@ class entidadeLocal extends MonoBehaviour {
 		return false;
 	}
 	
-	function organizarValor(valor : long) 
+	function organizarValor(valor : float) 
     {
-        var tamanho = valor.ToString().length;
+        var tamanho = 0;
         var valorString = "";
         var valores = ["", "k", "m", "bi", "tri"];
+        
+        for each (letra in valor.ToString("F2"))
+			if (letra != ".")
+				tamanho += 1;
 
-        if (tamanho >= 4) {
+        if (tamanho >= 5) {
             for (var i = 0; i < 3; i++) {
                 if (i == 1)
                     valorString += ".";
 			
-                valorString += valor.ToString()[i];
+                valorString += valor.ToString("F2")[i];
             }
 			
             var index = 0;
@@ -145,33 +157,18 @@ class entidadeLocal extends MonoBehaviour {
 		
             valorString += valores[index];
 
-        } else valorString += valor.ToString();
-	
-       
+        } else valorString += valor.ToString("F2");
+
         return valorString;
     }
    
     function getValor(tipo : String)
 	{
-		if (tipo == "limpo")
-			return dinheiroLimpo;
-		if (tipo == "sujo")
-			return dinheiroSujo;
-		
-		return methProduzida;
-	}
-	
-	function getIngrediente(nome : String)
-	{
-		for (var i=0; i < nomeIngredientes.length; i++)
-			if (nome == nomeIngredientes[i])
-				return ingredientes[i];
+		for (var i=0; i < longNomes.length; i++)
+			if (tipo == longNomes[i])
+				return longListas[i];
 				
-		return -1;	
+		return -1;
 	}
 	
-	function getPrecoUnidade()
-	{
-		return precoUnidade;
-	}
 }

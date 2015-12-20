@@ -42,8 +42,8 @@ class Objeto extends MonoBehaviour {
 	
 	function comprar()
 	{
-		if (entidade.temDinheiro("limpo", valor)) {
-			entidade.atualizarDinheiro("limpo", valor*-1);
+		if (entidade.temValor("limpo", valor)) {
+			entidade.atualizarValor("limpo", valor*-1);
 			entidade.adicionar(getFilho());
 		}
 		
@@ -53,7 +53,7 @@ class Objeto extends MonoBehaviour {
 	function vender()
 	{
 		if (entidade.remover(getFilho()))
-			entidade.atualizarDinheiro("limpo", valor);
+			entidade.atualizarValor("limpo", valor);
 			
 		atualizarValores();
 	}

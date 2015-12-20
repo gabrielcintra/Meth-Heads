@@ -42,9 +42,12 @@ class botaoProduzir extends MonoBehaviour {
 				
 		for each (ingrediente in ingredientes)
 			ingrediente.GetComponent(Ingrediente).remover();
-			
-		entidade.atualizarMeth(1.0);
-		contador.contar(1.0);
+		
+		var producao = entidade.getValor("producaoUnidade");
+		producao -= entidade.getValor("estresse") * 0.01;
+
+		entidade.atualizarValor("meth", producao);
+		contador.contar(producao);
 	}
 
 }

@@ -43,18 +43,18 @@ class Ingrediente extends MonoBehaviour {
 		if (quantidade > 5) {
 			
 			if (preco <= dinheiroSujo) { // checa se ele tem dinheiro sujo pra pagar
-				entidade.atualizarDinheiro("sujo", preco * -1);
-				entidade.atualizarIngrediente(nome, quantidade);
+				entidade.atualizarValor("sujo", preco * -1);
+				entidade.atualizarValor(nome, quantidade);
 			} else {
 				if (preco <= dinheiroLimpo) { // checa se ele tem dinheiro limpo pra pagar
-					entidade.atualizarDinheiro("limpo", preco * -1);
-					entidade.atualizarIngrediente(nome, quantidade);
+					entidade.atualizarValor("limpo", preco * -1);
+					entidade.atualizarValor(nome, quantidade);
 				} else {
 					if (preco <= dinheiroLimpo + dinheiroSujo) { // checa se somando os dois tipos de dinheiro ele pode pagar
 						var diferenca = entidade.getValor("limpo") - entidade.getValor("sujo");
 						
-						entidade.atualizarDinheiro("sujo", entidade.getValor("sujo") * -1);
-						entidade.atualizarDinheiro("limpo", entidade.getValor("limpo") - diferenca);
+						entidade.atualizarValor("sujo", entidade.getValor("sujo") * -1);
+						entidade.atualizarValor("limpo", entidade.getValor("limpo") - diferenca);
 						
 						quantidadeAtual += quantidade;
 					} else // se nao, ele nao tem dinheiro
@@ -78,10 +78,10 @@ class Ingrediente extends MonoBehaviour {
 		if (quantidade < 0)
 			quantidade = 0;
 	
-		entidade.atualizarIngrediente(nome, quantidade * -1);
+		entidade.atualizarValor(nome, quantidade * -1);
 		
-		if (entidade.getIngrediente(nome) <= 0)
-			entidade.atualizarIngrediente(nome, 0);
+		if (entidade.getValor(nome) <= 0)
+			entidade.atualizarValor(nome, 0);
 			
 		atualizarBarra();
 	}
@@ -93,7 +93,7 @@ class Ingrediente extends MonoBehaviour {
 	
 	function atualizarBarra()
 	{
-		quantidadeAtual = entidade.getIngrediente(nome);
+		quantidadeAtual = entidade.getValor(nome);
 		barraQuantidade.GetComponent(Image).fillAmount = quantidadeAtual * 0.01;
 	}
 	

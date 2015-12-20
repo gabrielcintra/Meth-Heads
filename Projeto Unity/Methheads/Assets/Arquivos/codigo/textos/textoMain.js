@@ -5,7 +5,7 @@ class textoMain extends MonoBehaviour {
 	var entidade : entidadeLocal;
 	
 	var tipo : String;
-	var valor : long;
+	var valor : float; // valor que o texto guarda
 	var textoValor : Text; // objeto do tipo texto que mostra o valor
 	
 	var prefixo : String;
