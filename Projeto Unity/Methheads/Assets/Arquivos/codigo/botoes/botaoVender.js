@@ -8,9 +8,12 @@ class botaoVender extends MonoBehaviour {
 	var contador : contadorInstantaneo;
 	var barraQuantidade : GameObject;
 	var caixa : GameObject;
+	
 	var posCaixa : int; // posicao inicial da caixa de venda
 	
 	var porcentagemBarra : float; // quanto a barra esta cheia
+	var quantidadeVender : float; // quanto de meth sera vendida
+	
 	var emTransporte : boolean;
 	var entregando : boolean;
 
@@ -29,6 +32,10 @@ class botaoVender extends MonoBehaviour {
 	function iniciarVenda()
 	{
 		entregando = true;
+		
+		quantidadeVender = entidade.getValor("meth");
+		entidade.atualizarValor("meth", entidade.getValor("meth") * -1);
+		
 		transportar();
 	}
 	
@@ -47,11 +54,12 @@ class botaoVender extends MonoBehaviour {
 	        
 	        } else { // caixa voltando
 	        	
-	        	caixa.transform.position.x -= 0.01; // retorna para a posicao
+	        	caixa.transform.position.x -= 0.01;
 	        	
 	        	if (caixa.transform.position.x <= posCaixa) {
 	        		caixa.transform.position.x = posCaixa;
 	        		emTransporte = false;
+	        		
 	        		concluirVenda();
 	        		return;
 	        	}
@@ -64,7 +72,7 @@ class botaoVender extends MonoBehaviour {
 	function vender()
 	{
 		porcentagemBarra += entidade.getValor("velocidadeVenda"); // em quanto a barra vai crescer por milisegundo
-		porcentagemBarra -= entidade.getValor("meth") * 0.01; // 1% do peso da meth produzida afeta o transporte
+		porcentagemBarra -= quantidadeVender * 0.01; // 1% do peso da meth produzida afeta o transporte
 		
 		if (porcentagemBarra <= 0.0)
 			porcentagemBarra = 0.1;
@@ -83,23 +91,15 @@ class botaoVender extends MonoBehaviour {
 	
 	function concluirVenda()
 	{
-		caixa.transform.position.x = posCaixa; // retorna a posicao inicial da caixa
-		
-		var valor : float;
-		valor = entidade.getValor("meth") * entidade.getValor("precoUnidade");
-	
-		entidade.atualizarValor("sujo", valor);
-		entidade.atualizarValor("meth", entidade.getValor("meth") * -1);
-		
-		contador.contar(valor);
+		entidade.atualizarValor("sujo", quantidadeVender * entidade.getValor("precoUnidade"));
+		contador.contar(quantidadeVender);
 	}
 	
 	function OnMouseDown() 
 	{
 		if (entidade.getValor("meth") > 0 && !emTransporte) 
 		{
-			entregando = true;
-			transportar();
+			iniciarVenda();
 			
 			caixa.GetComponent(Image).sprite = frames[1];
 			caixa.GetComponent(Animator).enabled = false;
