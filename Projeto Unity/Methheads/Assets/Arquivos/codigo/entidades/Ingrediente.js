@@ -5,13 +5,15 @@ class Ingrediente extends MonoBehaviour {
 	var entidade : entidadeLocal;
 	
 	var nome : String;
+    var nomeCientifico : String;
+
 	var precoUnidade : float; // valor da unidade
 	var custoProducao : float; // quanto eh consumido por clique
 	var quantidadeAtual : float; // quantidade que tem disponivel
 	var quantidadeTotal : float; // capacidade total
 
 	var barraQuantidade : GameObject;
-	var botaoComprar : GameObject;
+	var info : GameObject;
 	
 	var balaoFalas : balaoFala;
 	
@@ -20,8 +22,7 @@ class Ingrediente extends MonoBehaviour {
 		entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
 		balaoFalas = GameObject.Find("balaoFala").GetComponent(balaoFala);
 		
-		barraQuantidade.SetActive(false);
-		botaoComprar.SetActive(false);
+		info.GetComponent(CanvasGroup).alpha = 0;
 	}
 	
 	function setValor(precoUnidade : float)
@@ -96,18 +97,44 @@ class Ingrediente extends MonoBehaviour {
 		quantidadeAtual = entidade.getValor(nome);
 		barraQuantidade.GetComponent(Image).fillAmount = quantidadeAtual * 0.01;
 	}
+
+	function getPorcentagem(atual : float, total : float){
+	    
+	    var porcentagem = (atual/total)*100;
+	    if (porcentagem < 0)
+	        porcentagem = 0;
+	    
+	    return porcentagem;
+	}
+	
+	function reconhecerInfo(){
+
+	    var objetosInfo = ["formula","proporcao","nome", "porcentagem"];
+	    var textos = [nome,custoProducao.ToString() + " mol",nomeCientifico, getPorcentagem(quantidadeAtual,quantidadeTotal) +"%"];
+
+	    for(var i = 0; i < objetosInfo.length; i++)
+	        GameObject.Find(objetosInfo[i]).GetComponent(Text).text = textos[i];
+	}
+
+	function mostrarInfo(){
+	    
+	    reconhecerInfo();
+
+	    info.GetComponent(CanvasGroup).alpha = 1;
+	    
+	    info.transform.position.x = this.gameObject.transform.position.x;
+	    info.transform.position.y = this.gameObject.transform.position.y + 2;
+
+    }
 	
 	function OnMouseEnter()
 	{
-		barraQuantidade.SetActive(true);
-		botaoComprar.SetActive(true);
-		
+	    mostrarInfo();
 		atualizarBarra();
 	}
 	
 	function OnMouseExit()
 	{
-		barraQuantidade.SetActive(false);
-		botaoComprar.SetActive(false);
+		info.GetComponent(CanvasGroup).alpha = 0;
 	}
 }

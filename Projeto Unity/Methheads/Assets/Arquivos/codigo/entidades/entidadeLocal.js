@@ -30,7 +30,7 @@ class entidadeLocal extends MonoBehaviour {
 		longNomes = ["meth", "limpo", "sujo", 
 		             "estresse", "estressePadrao", 
 		             "producaoUnidade", "precoUnidade", 
-		             "naoh", "hcl", "h2so4", "metilamina",
+		             "naoh", "hcl", "h2so4", "C10H15N",
 		             "velocidadeVenda"];
 		
 		funcNomes = ["dealer", "cooker", "pureza", "transporte", 
