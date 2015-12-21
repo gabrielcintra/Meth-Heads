@@ -26,17 +26,14 @@ class Objeto extends MonoBehaviour {
 	
 	function atualizarValores()
 	{
-	    var numeroCriancas = 7;
 	    var objetoPai = gameObject;
 
-	    if (tipo == "transporte") {
+	    if (tipo == "transporte") 
 	        atributos = [nome, getValorText(), descricao, getAtributoTexto(), getCapTexto()];
-	        numeroCriancas = 8;
-	    } else {
+	    else 
 	        atributos = [nome, getValorText(), descricao, getAtributoTexto()];
-	    }
 
-        for(var i = 3; i < numeroCriancas; i++)
+        for(var i = 3; i < atributos.length; i++)
             objetoPai.transform.GetChild(i).GetComponent(Text).text = atributos[i-3];
     }
 	

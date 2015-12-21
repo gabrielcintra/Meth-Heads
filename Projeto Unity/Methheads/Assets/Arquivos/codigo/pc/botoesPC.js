@@ -47,15 +47,24 @@ class botoesPC extends MonoBehaviour {
     
     function alternarTarefas()
     {
-    	var alpha = 1;
-    	var sprite = barraTarefas;
+    	var alpha : int;
+    	var sprite : Sprite;
     
     	if (tipo == "botaoFechar") {
     		alpha = 0;
     		sprite = null;
     	}
     	
-    	GameObject.Find("barraTarefas").GetComponent(CanvasGroup).alpha = alpha;
-        GameObject.Find("barraTarefas").GetComponent(Image).sprite = sprite;
+    	if (tipo == "botaoIcone")
+    	{
+    		alpha = 1;
+    		sprite = barraTarefas;
+    	}
+    	
+    	if (tipo != "botaoComum")
+    	{
+    		GameObject.Find("barraTarefas").GetComponent(CanvasGroup).alpha = alpha;
+        	GameObject.Find("barraTarefas").GetComponent(Image).sprite = sprite;
+    	}
     }
 }
