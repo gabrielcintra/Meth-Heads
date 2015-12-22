@@ -67,13 +67,11 @@ class Ingrediente extends MonoBehaviour {
 		atualizarBarra();
 	}
 	
-	// remove o custo de producao padrao
 	function remover()
 	{
 		remover(custoProducao);
 	}
 	
-	// remove "quantidade" do ingrediente
 	function remover(quantidade : float)
 	{
 		if (quantidade < 0)
@@ -98,8 +96,8 @@ class Ingrediente extends MonoBehaviour {
 		barraQuantidade.GetComponent(Image).fillAmount = quantidadeAtual * 0.01;
 	}
 
-	function getPorcentagem(atual : float, total : float){
-	    
+	function getPorcentagem(atual : float, total : float)
+	{    
 	    var porcentagem = (atual/total)*100;
 	    if (porcentagem < 0)
 	        porcentagem = 0;
@@ -107,17 +105,17 @@ class Ingrediente extends MonoBehaviour {
 	    return porcentagem;
 	}
 	
-	function reconhecerInfo(){
+	function reconhecerInfo()
+	{
+	    var objetosInfo = ["formula", "proporcao", "nome", "porcentagem"];
+	    var textos = [nome, custoProducao.ToString() + " mol", nomeCientifico, getPorcentagem(quantidadeAtual,quantidadeTotal) + "%"];
 
-	    var objetosInfo = ["formula","proporcao","nome", "porcentagem"];
-	    var textos = [nome,custoProducao.ToString() + " mol",nomeCientifico, getPorcentagem(quantidadeAtual,quantidadeTotal) +"%"];
-
-	    for(var i = 0; i < objetosInfo.length; i++)
+	    for (var i = 0; i < objetosInfo.length; i++)
 	        GameObject.Find(objetosInfo[i]).GetComponent(Text).text = textos[i];
 	}
 
-	function mostrarInfo(){
-	    
+	function mostrarInfo()
+	{
 	    reconhecerInfo();
 
 	    info.GetComponent(CanvasGroup).alpha = 1;

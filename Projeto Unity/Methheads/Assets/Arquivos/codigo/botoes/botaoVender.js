@@ -27,6 +27,7 @@ class botaoVender extends MonoBehaviour {
 		emTransporte = false;
 		
 		barraQuantidade.GetComponent(Image).fillAmount = porcentagemBarra * 0.01;
+		barraQuantidade.transform.parent.gameObject.SetActive(false);
 	}
 	
 	function iniciarVenda()
@@ -47,7 +48,11 @@ class botaoVender extends MonoBehaviour {
 	        	
 	        	caixa.transform.position.x += 0.01;
 	        	
-	        	if (caixa.transform.position.x > 10) {
+	        	if (caixa.transform.position.x > 9.0
+	        	    && caixa.transform.position.x < 9.05)
+	        	    	alternarBarra(); 
+	        	
+	        	if (caixa.transform.position.x > 13) {
 	        		vender();
 	        		return;
 	        	}
@@ -80,9 +85,11 @@ class botaoVender extends MonoBehaviour {
 		if (porcentagemBarra >= 100) {
 		
 			entregando = false;
-			Invoke("transportar", 1);
 			porcentagemBarra = 0.0;
 			
+			alternarBarra();
+			Invoke("transportar", 1);
+
 		} else 
 			Invoke("vender", 0.1);
 		
@@ -91,8 +98,18 @@ class botaoVender extends MonoBehaviour {
 	
 	function concluirVenda()
 	{
+		barraQuantidade.transform.parent.gameObject.SetActive(false);
+	
 		entidade.atualizarValor("sujo", quantidadeVender * entidade.getValor("precoUnidade"));
 		contador.contar(quantidadeVender);
+	}
+	
+	function alternarBarra()
+	{
+		if (barraQuantidade.transform.parent.gameObject.activeSelf)
+			barraQuantidade.transform.parent.gameObject.SetActive(false);
+		else
+			barraQuantidade.transform.parent.gameObject.SetActive(true);
 	}
 	
 	function OnMouseDown() 

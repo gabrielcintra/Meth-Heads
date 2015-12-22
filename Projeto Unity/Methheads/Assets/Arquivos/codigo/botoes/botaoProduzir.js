@@ -33,12 +33,11 @@ class botaoProduzir extends MonoBehaviour {
 
 	function produzir()
 	{
-		for each (ingrediente in ingredientes) {
+		for each (ingrediente in ingredientes)
 			if (ingrediente.GetComponent(Ingrediente).getQuantidade() <= 0) { // se nao tem ingredientes:
 				balaoFalas.falar(0); // 0 indica que nao possui ingredientes
 				return;
 			}
-		}
 				
 		for each (ingrediente in ingredientes)
 			ingrediente.GetComponent(Ingrediente).remover();

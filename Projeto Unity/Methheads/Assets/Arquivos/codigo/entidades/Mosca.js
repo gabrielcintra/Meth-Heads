@@ -25,8 +25,8 @@ class Mosca extends MonoBehaviour {
 	// tenta fazer a mosca surgir na tela (6% de chance)
 	function tentaAparecer() 
 	{
-		var chance = Random.Range(0, 15);
-		
+		var chance = 5;//Random.Range(0, 15);
+
 		if (chance == 5) {
 			aparecer();
 		} else
@@ -39,6 +39,7 @@ class Mosca extends MonoBehaviour {
 		
 		moscaObjeto.transform.position.x = 0.0;
 		moscaObjeto.transform.position.y = 0.0;
+		GetComponent(CanvasGroup).alpha = 1;
 		
 		moverMosca();
 	}
@@ -71,20 +72,25 @@ class Mosca extends MonoBehaviour {
 	
 	function derrubarMoscaMorta()
 	{
-		moscaObjeto.transform.position.y = moscaObjeto.transform.position.y - 0.1;
-		
 		if (moscaObjeto.transform.position.y <= -3) {
 			GetComponent(Image).sprite = moscaMorta[1];
-			Invoke("removerMoscaMorta", 2);
-		} else
+			Invoke("removerMoscaMorta", 5);
+		} else {
 			Invoke("derrubarMoscaMorta", 0.01);
+			moscaObjeto.transform.position.y = moscaObjeto.transform.position.y - 0.1;
+		}
 	}
 	
 	function removerMoscaMorta() 
 	{
-		GetComponent(Animator).enabled = true;
-		moscaObjeto.SetActive(false);
+		if (GetComponent(CanvasGroup).alpha <= 0) {
+			GetComponent(Animator).enabled = true;
+			moscaObjeto.SetActive(false);
 		
-		Invoke("tentaAparecer", 20);
+			Invoke("tentaAparecer", 20);
+		} else {
+			GetComponent(CanvasGroup).alpha -= 0.1;
+			Invoke("removerMoscaMorta", 0.1);
+		}
 	}
 }
