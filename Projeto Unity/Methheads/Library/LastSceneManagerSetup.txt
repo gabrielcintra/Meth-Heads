@@ -1,0 +1,4 @@
+sceneSetups:
+- path: E:/Unity/Projetos/Whats/Assets/data/scenes/menu.unity
+  isLoaded: 1
+  isActive: 1
