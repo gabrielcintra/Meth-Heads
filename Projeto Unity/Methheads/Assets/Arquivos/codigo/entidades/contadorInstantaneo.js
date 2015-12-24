@@ -7,14 +7,16 @@ class contadorInstantaneo extends MonoBehaviour {
 	private var canvas : CanvasGroup;
 	
 	var entidade : entidadeLocal;
-	var transforms : Transform;
+	var contadorOriginal : GameObject;
+    var Canvas : Transform;
 
 	function Start () 
 	{
 	    canvas = gameObject.GetComponent(CanvasGroup);
 		posInicial = gameObject.transform.position.y;
 		   
-	    canvas.alpha = 0;
+		canvas.alpha = 0;
+
 	}
 
 	function contar(valor : float) 
@@ -23,16 +25,32 @@ class contadorInstantaneo extends MonoBehaviour {
 	    gameObject.GetComponent(Text).text = "+" + entidade.organizarValor(valor);
 	    gameObject.GetComponent(CanvasGroup).alpha = 1;
 	    
-	    subir_apagar();
+	    subir_apagar(this.gameObject);
+	    criarObjeto(valor);
 	}
 
-	function subir_apagar() 
+	function subir_apagar(objeto : GameObject) 
 	{
 	        CancelInvoke("subir_apagar");
-	        this.gameObject.transform.position.y += velocidade;
+	        objeto.transform.position.y += velocidade;
 	        canvas.alpha -= velocidade;
 	        
 	        Invoke("subir_apagar",0);
+	}
+
+	function criarObjeto(valor : float){
+	    var copiaContador : GameObject = new GameObject("contadorCopia");
+	    copiaContador.AddComponent(Text);
+	    copiaContador.AddComponent(CanvasGroup);
+	    copiaContador.AddComponent(contadorInstantaneo);
+	    copiaContador.GetComponent(contadorInstantaneo).Canvas = GameObject.Find("Canvas").GetComponent(Transform);
+	    copiaContador.transform.SetParent(Canvas);
+	    copiaContador.transform.position = contadorOriginal.transform.position;
+	    copiaContador.GetComponent(Text).text = ""+valor;
+	    copiaContador.GetComponent(Text).font = gameObject.GetComponent(Text).font;
+	    copiaContador.GetComponent(contadorInstantaneo).entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
+	    copiaContador.GetComponent(contadorInstantaneo).contadorOriginal = this.gameObject;
+	    subir_apagar(copiaContador);
 	}
 
 }
