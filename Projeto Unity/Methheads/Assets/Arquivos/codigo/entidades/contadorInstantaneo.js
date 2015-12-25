@@ -26,6 +26,7 @@ class contadorInstantaneo extends MonoBehaviour {
 	    gameObject.GetComponent(CanvasGroup).alpha = 1;
 	    
 	    subir_apagar(this.gameObject);
+	    criarObjeto(valor);
 	}
 
 	function subir_apagar(objeto : GameObject) 
@@ -36,4 +37,20 @@ class contadorInstantaneo extends MonoBehaviour {
 	        
 	        Invoke("subir_apagar",0);
 	}
+
+	function criarObjeto(valor : float){
+	    var copiaContador : GameObject = new GameObject("contadorCopia");
+	    copiaContador.AddComponent(Text);
+	    copiaContador.AddComponent(CanvasGroup);
+	    copiaContador.AddComponent(contadorInstantaneo);
+	    copiaContador.GetComponent(contadorInstantaneo).Canvas = GameObject.Find("Canvas").GetComponent(Transform);
+	    copiaContador.transform.SetParent(Canvas);
+	    copiaContador.transform.position = contadorOriginal.transform.position;
+	    copiaContador.GetComponent(Text).text = ""+valor;
+	    copiaContador.GetComponent(Text).font = gameObject.GetComponent(Text).font;
+	    copiaContador.GetComponent(contadorInstantaneo).entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
+	    copiaContador.GetComponent(contadorInstantaneo).contadorOriginal = this.gameObject;
+	    subir_apagar(copiaContador);
+	}
+
 }
