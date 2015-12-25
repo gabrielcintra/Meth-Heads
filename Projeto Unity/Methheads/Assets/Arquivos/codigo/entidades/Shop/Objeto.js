@@ -4,45 +4,42 @@ class Objeto extends MonoBehaviour {
 
 	var entidade : entidadeLocal;
 
-	private var nome : String;
-	var tipo : String;
-	var descricao : String;
-	var valor : float;
-	var valorTexto : String;
+	var componentes : GameObject[];    // gameObjects que o objeto possui na interface ***
+	var componentesValores : String[]; // Valores que os gameObjects devem guardar
+
+	var nome : String;                 // nome do objeto (carro de compras, fulano, etc)
+	var tipo : String;                 // cooker, dealer, empresa, pureza, lab, etc
+	var tipoDinheiro : String;         // sujo ou limpo
+
+	var descricao : String;            // descricao do objeto (ex: a good place to...) ***
+	var valor : float;                 // preco de compra ***       
 	
-	var atributo : float;
-	var atributoTexto : String; // improve by, transport in...
-	
-	// textos que sao exibidos na loja
-	var atributos : String[];
+	var atributo : float;              // quanto incrementa/diminui por segundo ***
 	
 	function Start() 
 	{ 
 		entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
-	
 	    nome = gameObject.name;       
+	}
+
+	function Update()
+	{
 		atualizarValores();
 	}
 	
 	function atualizarValores()
 	{
-	    var objetoPai = gameObject;
-
-	    if (tipo == "transporte") 
-	        atributos = [nome, getValorText(), descricao, getAtributoTexto(), getCapTexto()];
-	    else 
-	        atributos = [nome, getValorText(), descricao, getAtributoTexto()];
-
-        for(var i = 3; i < atributos.length; i++)
-            objetoPai.transform.GetChild(i).GetComponent(Text).text = atributos[i-3];
+	    for (var i=0; i < componentesValores.length; i++)
+	    	componentes[i].GetComponent(Text).text = componentesValores[i];
     }
 	
 	function comprar()
 	{
-		if (entidade.temValor("limpo", valor)) {
-			entidade.atualizarValor("limpo", valor*-1);
+		if (entidade.temValor(tipoDinheiro, valor)) {
+			entidade.atualizarValor(tipoDinheiro, valor*-1);
 			entidade.adicionar(getFilho());
-		}
+			print ("comprado!");
+		} else print ("nem tem!!!");
 		
 		atualizarValores();
 	}
@@ -50,11 +47,11 @@ class Objeto extends MonoBehaviour {
 	function vender()
 	{
 		if (entidade.remover(getFilho()))
-			entidade.atualizarValor("limpo", valor);
+			entidade.atualizarValor(tipoDinheiro, valor);
 			
 		atualizarValores();
 	}
-	
+
 	function getNome()
 	{
 		return nome;
@@ -64,35 +61,21 @@ class Objeto extends MonoBehaviour {
 	{
 		return valor;
 	}
-	
-	function getValorText()
+
+	function getAtributo()
 	{
-		return "$ " + entidade.organizarValor(valor);
+		return atributo;
 	}
-	
+
 	function getTipo()
 	{
 		return tipo;
 	}
 	
-	function getAtributo()
-	{
-		return atributo;
-	}
-	
-	// "dealer", "cooker", "pureza", "transporte", "laboratorio", "empresa"
-	function getAtributoTexto()
-	{
-		var finalFrase = atributo.ToString();
-		
-		if (tipo == "pureza" || tipo == "transporte")
-			finalFrase = atributo*100 + "%";
-			
-		return atributoTexto + " " + finalFrase;
-	}
-	
-	// metodo morto, sera reescrito pelo filho
-	function getFilho() { return this; }
-	function getCapTexto(){return ""; }
+	// --- Metodos que serao reescritos pelos filhos
+	function getFilho() {return this;}
+	function getSecTexto(){return "";}
+	function getAtributoTexto(){return "";}
+	// -----------------------------------------------
 
 }

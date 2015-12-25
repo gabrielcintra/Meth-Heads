@@ -9,6 +9,8 @@ class entidadeLocal extends MonoBehaviour {
 	
 	var dealers = new Array();
 	var cookers = new Array();
+	var providers = new Array();
+
 	var pureza = new Array();
 	var laboratorios = new Array();
 	var transportes = new Array();
@@ -33,7 +35,7 @@ class entidadeLocal extends MonoBehaviour {
 		             "naoh", "hcl", "h2so4", "C10H15N",
 		             "velocidadeVenda"];
 		
-		funcNomes = ["dealer", "cooker", "pureza", "transporte", 
+		funcNomes = ["dealer", "cooker", "provider", "pureza", "transporte", 
 		             "laboratorio", "empresa"];
 		             
 		if (ambiente != "pc" && ambiente != "quarto")
@@ -66,7 +68,7 @@ class entidadeLocal extends MonoBehaviour {
 	function producaoAutomatica()
 	{
 		var producao = 0.0;
-		var cooker : Objeto;
+		var cooker : objetoCooker;
 		
 		for each (cookerContratado in getFunc("cooker")) {
 			cooker = cookerContratado;
@@ -89,6 +91,8 @@ class entidadeLocal extends MonoBehaviour {
 			if (tipo == longNomes[i]) {
 				
 				longListas[i] += valor;
+				longListas[i] = corrigirValor(longListas[i]); // arredonda para duas casas decimais
+
 				if (tipo == "limpo" || tipo == "sujo" || tipo == "meth")
 					longListas[i] = checaNegativo(longListas[i]);
 				
@@ -161,12 +165,14 @@ class entidadeLocal extends MonoBehaviour {
         var tamanho = 0;
         var valorString = "";
         var valores = ["", "k", "m", "bi", "tri"];
+
+        valor = corrigirValor(valor);
         
         for each (letra in valor.ToString("F2"))
 			if (letra != ".")
 				tamanho += 1;
 
-        if (tamanho >= 5) {
+        if (tamanho >= 6) {
             for (var i = 0; i < 3; i++) {
                 if (i == 1)
                     valorString += ".";
@@ -187,6 +193,13 @@ class entidadeLocal extends MonoBehaviour {
 
         return valorString;
     }
+
+    // arredonda para duas casas decimais
+    function corrigirValor(valor : float)
+    {
+    	var valorCorreto = Mathf.Round(valor * 100.0) / 100.0;
+    	return valorCorreto;
+    }
    
     function getValor(tipo : String)
 	{
@@ -203,7 +216,12 @@ class entidadeLocal extends MonoBehaviour {
 			if (tipo == funcNomes[i])
 				return funcListas[i];
 				
-		return null;
+		return new Array();
+	}
+
+	function getFuncTamanho(tipo : String)
+	{
+		return getFunc(tipo).length;
 	}
 	
 }

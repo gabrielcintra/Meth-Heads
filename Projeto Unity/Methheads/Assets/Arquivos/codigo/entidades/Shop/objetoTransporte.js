@@ -2,8 +2,7 @@
 
 class objetoTransporte extends Objeto {
 
-    var atributoCapacidade : float;
-    var atributoCapTexto : String;
+    var capacidade : float;
 
 	function Start()
 	{
@@ -15,13 +14,13 @@ class objetoTransporte extends Objeto {
 		return this;
 	}
 
-	function getCapacidade(){
-	    return atributoCapacidade;
+	function getSecundario() {
+	    return capacidade;
 	}
 
-	function getCapTexto()
+	function getSecTexto()
 	{
-	    return atributoCapTexto + " " + atributoCapacidade + "lb";
+	    return "It can hold " + capacidade + "lb";
 	}
 	
 }
