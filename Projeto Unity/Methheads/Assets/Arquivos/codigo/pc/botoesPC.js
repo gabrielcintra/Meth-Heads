@@ -29,9 +29,9 @@ class botoesPC extends MonoBehaviour {
     {
     	cursor.setCursorDefault();
     
+        alternarBotao(desativarElementos, false);
     	alternarBotao(ativarElementos, true);
-    	alternarBotao(desativarElementos, false);
-    	
+
     	alternarTarefas();
     }
     

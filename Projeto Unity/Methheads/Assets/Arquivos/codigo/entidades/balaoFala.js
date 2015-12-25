@@ -15,21 +15,15 @@ class balaoFala extends MonoBehaviour{
 					   "Your meth is disgraceful!", 
 					   "Lets cook!", 
 					   "Don't you know how to cook?",
-					   "CLICK! CLICK EVERYWHERE!", "Watch out for DEA."];
-					   
+					   "CLICK! CLICK EVERYWHERE!", "Watch out for DEA."];			   
 	var falasMosca = ["A FLY! KILL IT!", 
 	                  "We can't cook correctly with \n a fly in the lab.",
 		              "A fucking fly. Kill it please.", 
-		              "Thats the sound of... OMG! A FLY!"];
-		              
+		              "Thats the sound of... OMG! A FLY!"];	              
 	var falasDEA = ["You're taking too much risk.", "DEA is on us."];
-	
-	var falasDEApego = ["DEA has seized some of our labs and \n arrested some of our dealers."];
-		 
+	var falasDEApego = ["DEA has seized some of our labs and \n arrested some of our dealers."]; 
 	var falasIRS = ["DEA and IRS are on us."];
-	
 	var falasIRS2 = ["IRS is watching us.", "Be careful with IRS."];
-	
 	var falasDEAIRS = ["Shit...IRS took our money"];
 	
 	// FALAS INDEXADAS
