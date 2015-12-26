@@ -29,15 +29,16 @@ class contadorInstantaneo extends MonoBehaviour {
 	    subir();
 	}
 
-	function contarTransacao(situacao : String){
-
+	function contarTransacao(situacao : String)
+	{
 	    if (situacao == "complete")
 	        this.transform.GetChild(1).GetComponent(Image).sprite = transacaoCompleta;
 	    if (situacao == "failed")
 	        this.transform.GetChild(1).GetComponent(Image).sprite = transacaoFalhou;
 
+	     this.transform.GetChild(0).gameObject.GetComponent(Text).text = "Transiction " + situacao;
+
 	    gameObject.transform.position.y = posInicial;
-	    gameObject.GetComponentInChildren(Text).text = "Transiction \n" + situacao;
 	    gameObject.GetComponent(CanvasGroup).alpha = 1;
 	    
 	    descer();

@@ -35,13 +35,16 @@ class Objeto extends MonoBehaviour {
 	
 	function comprar()
 	{
+		var retorno = false;
+
 		if (entidade.temValor(tipoDinheiro, valor)) {
 			entidade.atualizarValor(tipoDinheiro, valor*-1);
 			entidade.adicionar(getFilho());
-			return true;
-		} else return false;
+			retorno = true;
+		}
 		
 		atualizarValores();
+		return retorno;
 	}
 	
 	function vender()
