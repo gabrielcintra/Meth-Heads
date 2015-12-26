@@ -2,8 +2,6 @@
 
 class objetoCrime extends Objeto {
 
-    var objetoTransacao : GameObject;
-
 	function Start()
 	{
 		super();
