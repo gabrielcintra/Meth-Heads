@@ -57,7 +57,7 @@ class entidadeLocal extends MonoBehaviour {
 		
 		longListas = [0.0, 0.0, 0.0, 
 		              0.0, 0.1, 
-		              1.5, 40.0, 
+		              1.5, 5.0, 
 		              100.0, 100.0, 100.0, 100.0,
 		              1.0];
 		              
@@ -160,39 +160,37 @@ class entidadeLocal extends MonoBehaviour {
 		return false;
 	}
 	
-	function organizarValor(valor : float) 
-    {
-        var tamanho = 0;
-        var valorString = "";
-        var valores = ["", "k", "m", "bi", "tri"];
+	function organizarValor(valor : float)
+	{
+	    var sufixos = ["", "k", "m", "bi", "tri"];
+	    var valorString = "";
+	    var sufixo = 0;
+	    var tamanho = 0;
 
-        valor = corrigirValor(valor);
-        
-        for each (letra in valor.ToString("F2"))
-			if (letra != ".")
-				tamanho += 1;
+	    valor = corrigirValor(valor);
 
-        if (tamanho >= 6) {
-            for (var i = 0; i < 3; i++) {
-                if (i == 1)
-                    valorString += ".";
-			
-                valorString += valor.ToString("F2")[i];
-            }
-			
-            var index = 0;
-            for (var j = 4; j < 15; j=j+3) {
-                var diferenca = tamanho - j;
-                if (diferenca >= 0)
-                    index++;
-            }
-		
-            valorString += valores[index];
+	    for (var i = valor.ToString().length-1; i >= 0; i++) {
 
-        } else valorString += valor.ToString("F2");
+	        if (valorString.length == 6)
+	            valorString = "" + valorString[0];
 
-        return valorString;
-    }
+	        if (valorString.length == 2)
+	            valorString = "." + valorString;
+
+	        if (tamanho % 4 == 0)
+	            sufixo++;
+
+	        if (valor.ToString()[i] != ".") {
+	            tamanho++;
+	            valorString += valor.ToString()[i];
+	        }
+	    }
+
+	    if (valorString[0] == ".")
+	        valorString[0] = "";
+
+	    return valorString + sufixos[sufixo];
+	}
 
     // arredonda para duas casas decimais
     function corrigirValor(valor : float)

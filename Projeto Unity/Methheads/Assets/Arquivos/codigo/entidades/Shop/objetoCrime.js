@@ -7,7 +7,7 @@ class objetoCrime extends Objeto {
         super();
 
         tipoDinheiro = "sujo";
-        componentesValores = [nome, entidade.getFuncTamanho(tipo).ToString(), "$ " + getValor(), getAtributoTexto(), getSecTexto()];
+        componentesValores = [nome, entidade.getFuncTamanho(tipo).ToString(), "$ " + entidade.organizarValor(getValor()), getAtributoTexto(), getSecTexto()];
 
     }
 

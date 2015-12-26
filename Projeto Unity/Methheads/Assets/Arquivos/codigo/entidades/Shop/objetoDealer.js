@@ -17,7 +17,7 @@ class objetoDealer extends objetoCrime {
 
 	function getAtributoTexto()
 	{
-		return "Sells " + atributo + " meth per second";
+	    return "Sells  " + entidade.organizarValor(atributo) + "   per second";
 	}
 
 	function getSecTexto() {
