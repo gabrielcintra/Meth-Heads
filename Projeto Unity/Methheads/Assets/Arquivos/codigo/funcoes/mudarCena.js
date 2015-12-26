@@ -7,6 +7,6 @@ function LoadNextLevel(name : String) {
 
 //da load no level depois de um segundo
 function LevelLoad(name : String) {
-	yield WaitForSeconds(1f);
+	yield WaitForSeconds(0.9f);
 	Application.LoadLevel(name);
 }

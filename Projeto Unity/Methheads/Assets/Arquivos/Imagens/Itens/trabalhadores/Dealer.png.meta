@@ -1,9 +1,39 @@
 fileFormatVersion: 2
 guid: 593bb6399f3e5e54a9b0f77c933ba636
-timeCreated: 1450984536
+timeCreated: 1451095991
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Walter White
+    21300002: Dealer_1
+    21300004: Dealer_2
+    21300006: Dealer_3
+    21300008: Dealer_4
+    21300010: Dealer_5
+    21300012: Dealer_6
+    21300014: Skinny Pete
+    21300016: Badger
+    21300018: Combo
+    21300020: U. Heisenberg
+    21300022: Dealer_11
+    21300024: Dealer_12
+    21300026: Heisenberg
+    21300028: Jesse
+    21300030: Saul
+    21300032: Dealer_16
+    21300034: Declan
+    21300036: Dealer_18
+    21300038: Gustavo
+    21300040: Gale
+    21300042: Tuco
+    21300044: Dealer_22
+    21300046: Dealer_23
+    21300048: Dealer_24
+    21300050: Dealer_25
+    21300052: Todd
+    21300054: Lydia
+    21300056: Dealer_28
+    21300058: Dealer_29
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -17,7 +47,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: 0.25
+    heightScale: .25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -30,7 +60,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,19 +68,318 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
-    outline: []
+    sprites:
+    - name: Walter White
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 325
+        width: 75
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_1
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 325
+        width: 70
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_2
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 325
+        width: 75
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_3
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 325
+        width: 75
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_4
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 325
+        width: 75
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_5
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 325
+        width: 65
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_6
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 325
+        width: 65
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skinny Pete
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 325
+        width: 60
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Badger
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 325
+        width: 80
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Combo
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 325
+        width: 65
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: U. Heisenberg
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 185
+        width: 90
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_11
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 185
+        width: 65
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_12
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 185
+        width: 70
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Heisenberg
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 185
+        width: 70
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Jesse
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 185
+        width: 65
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Saul
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 185
+        width: 70
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_16
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 185
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Declan
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 185
+        width: 75
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_18
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 185
+        width: 75
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Gustavo
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 185
+        width: 70
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Gale
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 40
+        width: 90
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tuco
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 40
+        width: 65
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_22
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 40
+        width: 95
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_23
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 40
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_24
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 40
+        width: 65
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_25
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 40
+        width: 90
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Todd
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 40
+        width: 75
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Lydia
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 40
+        width: 70
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_28
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 40
+        width: 65
+        height: 110
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Dealer_29
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 40
+        width: 70
+        height: 115
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

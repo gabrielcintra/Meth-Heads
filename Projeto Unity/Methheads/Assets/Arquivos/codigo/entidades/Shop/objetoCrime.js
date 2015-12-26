@@ -1,6 +1,8 @@
-#pragma strict
+    #pragma strict
 
 class objetoCrime extends Objeto {
+
+    var objetoTransacao : GameObject;
 
 	function Start()
 	{
@@ -8,22 +10,34 @@ class objetoCrime extends Objeto {
 
 		tipoDinheiro = "sujo";
 		componentesValores = [nome, entidade.getFuncTamanho(tipo).ToString(), "$ " + getValor(), getAtributoTexto(), getSecTexto()];
+
 	}
 
-	function alternarInfo()
+	function alternarInfo(condicao : boolean)
 	{
-		// TODO
-		// Altera o estado de "infoMouse"
+	    this.transform.GetChild(1).gameObject.SetActive(condicao);
 	}
 
 	function OnMouseEnter()
 	{
-		alternarInfo();
+		alternarInfo(true);
 	}
 
 	function OnMouseDown()
 	{
-		comprar();
+	    transacao(comprar());
+	}
+
+	function OnMouseExit(){
+	    alternarInfo(false);
+	}
+
+	function transacao(tem : boolean){
+	    var contador = GameObject.Find("Transacao").GetComponent(contadorInstantaneo);
+	    if (tem)
+	        contador.contarTransacao("complete");
+	    else
+	        contador.contarTransacao("failed");
 	}
 
 }

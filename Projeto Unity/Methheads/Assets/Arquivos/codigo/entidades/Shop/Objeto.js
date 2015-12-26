@@ -38,8 +38,8 @@ class Objeto extends MonoBehaviour {
 		if (entidade.temValor(tipoDinheiro, valor)) {
 			entidade.atualizarValor(tipoDinheiro, valor*-1);
 			entidade.adicionar(getFilho());
-			print ("comprado!");
-		} else print ("nem tem!!!");
+			return true;
+		} else return false;
 		
 		atualizarValores();
 	}

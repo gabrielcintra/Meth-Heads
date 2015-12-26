@@ -21,7 +21,7 @@ class objetoDealer extends objetoCrime {
 	}
 
 	function getSecTexto() {
-		return "Tax: " + taxa; 
+		return "" + taxa + "%"; 
 	}
 
 }
