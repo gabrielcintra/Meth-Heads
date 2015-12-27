@@ -4,25 +4,15 @@ class barraEstresse extends MonoBehaviour {
 
 	var entidade : entidadeLocal;
 	var barraQuantidade : GameObject;
-	var limiteEstresse : float[];
 
-	function Start () 
+	function Start()
 	{
-		atualizarEstresse();
+		entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
+		barraQuantidade = GameObject.Find("barraEstresse");
 	}
-	
-	function atualizarEstresse()
-	{
-		atualizarEstresse(entidade.getValor("estressePadrao"));
-	}
-	
-	function atualizarEstresse(quantidade : float)
-	{
-		entidade.atualizarValor("estresse", quantidade);
-		if (entidade.getValor("estresse") >= 100)
-			return;
 
+	function Update ()
+	{
 		barraQuantidade.GetComponent(Image).fillAmount = entidade.getValor("estresse") * 0.01;
-		Invoke("atualizarEstresse", 1);
 	}
 }

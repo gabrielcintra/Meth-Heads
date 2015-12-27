@@ -6,11 +6,14 @@ import UnityEngine.Animator;
 
 class Mosca extends MonoBehaviour {
 
+	var entidade : entidadeLocal;
+
 	var moscaObjeto : GameObject;
 	var moscaMorta : Sprite[]; //0 - Morta / 1 - Mancha
 
 	function Start () 
 	{
+		entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
 		moscaObjeto = GameObject.Find("Mosca");
 		moscaObjeto.SetActive(false);
 		
@@ -25,7 +28,7 @@ class Mosca extends MonoBehaviour {
 	// tenta fazer a mosca surgir na tela (6% de chance)
 	function tentaAparecer() 
 	{
-		var chance = Random.Range(0, 15);
+		var chance = 5;//Random.Range(0, 15);
 
 		if (chance == 5) {
 			aparecer();
@@ -59,6 +62,7 @@ class Mosca extends MonoBehaviour {
 		moscaObjeto.transform.Rotate(Vector3.forward * Random.Range(-0.8, 0.8));
 
 		Invoke("moverMosca", 0);
+		Invoke("atualizarEstresse", 1);
 	}
 
 	function mostrarMoscaMorta()
@@ -85,6 +89,7 @@ class Mosca extends MonoBehaviour {
 	{
 		if (GetComponent(CanvasGroup).alpha <= 0) {
 			GetComponent(Animator).enabled = true;
+			CancelInvoke("atualizarEstresse");
 			moscaObjeto.SetActive(false);
 		
 			Invoke("tentaAparecer", 20);
@@ -92,5 +97,12 @@ class Mosca extends MonoBehaviour {
 			GetComponent(CanvasGroup).alpha -= 0.1;
 			Invoke("removerMoscaMorta", 0.1);
 		}
+	}
+
+	function atualizarEstresse()
+	{
+		CancelInvoke("atualizarEstresse");
+		entidade.atualizarValor("estresse", 1.0);
+		Invoke("atualizarEstresse", 1);
 	}
 }

@@ -12,9 +12,8 @@ class Objeto extends MonoBehaviour {
 	var tipoDinheiro : String;         // sujo ou limpo
 
 	var descricao : String;            // descricao do objeto (ex: a good place to...) ***
-	var valor : float;                 // preco de compra ***       
-	
-	var atributo : float;              // quanto incrementa/diminui por segundo ***
+	var valor : long;                  // preco de compra ***      
+	var atributo : long;               // quanto incrementa/diminui por segundo ***
 	
 	function Start() 
 	{ 

@@ -96,19 +96,17 @@ class balaoFala extends MonoBehaviour{
 		}
 	}
 	
-	function calar() 
+	function calar(falar : boolean) 
 	{	
 		balaoFala.SetActive(false);
 		estaFalando = false;
 		
-		Invoke("falar", Random.Range(4, 10));
+		if (falar)
+			Invoke("falar", Random.Range(4, 10));
 	}
-	
-	function alternarMosca() 
-	{
-		if (temMosca)
-			temMosca = false;
-		else
-			temMosca = true;
+
+	function calar() 
+	{ 
+		calar(true);
 	}
 }

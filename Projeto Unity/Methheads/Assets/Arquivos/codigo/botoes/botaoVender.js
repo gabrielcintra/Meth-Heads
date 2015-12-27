@@ -76,11 +76,15 @@ class botaoVender extends MonoBehaviour {
 	
 	function vender()
 	{
-		porcentagemBarra += entidade.getValor("velocidadeVenda"); // em quanto a barra vai crescer por milisegundo
-		porcentagemBarra -= quantidadeVender * 0.01; // 1% do peso da meth produzida afeta o transporte
-		
-		if (porcentagemBarra <= 0.0)
-			porcentagemBarra = 0.1;
+		//----------------- Calculo da velocidade de venda ----------
+		var velocidade = entidade.getValor("velocidadeVenda");
+		velocidade -= quantidadeVender * 0.01;
+
+		if (velocidade <= 0)
+			velocidade = 0.05;
+		//------------------------------------------------------------
+
+		porcentagemBarra += velocidade;
 			
 		if (porcentagemBarra >= 100) {
 		

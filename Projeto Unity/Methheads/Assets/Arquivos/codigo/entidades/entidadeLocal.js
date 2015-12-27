@@ -22,8 +22,8 @@ class entidadeLocal extends MonoBehaviour {
 	var funcListas : Array[]; // listas dos funcionarios
 	var longNomes : String[]; // nome dos valores que tem numeros (meth, dinheiro, etc)
 	var longListas : float[]; // listas que compoem os valores
-	
-	//-----------------------------------------
+
+	//----------------------------------------
 	
 	var contadorMeth : contadorInstantaneo;
 	
@@ -37,32 +37,38 @@ class entidadeLocal extends MonoBehaviour {
 		
 		funcNomes = ["dealer", "cooker", "provider", "pureza", "transporte", 
 		             "laboratorio", "empresa"];
-		             
+      
 		if (ambiente != "pc" && ambiente != "quarto")
 			contadorMeth = GameObject.Find("contadorInstantaneoMeth").GetComponent(contadorInstantaneo);
 	
 		//carregarJogo()
 		novoJogo();
-		producaoAutomatica();
+		sistemasAutomaticos();
 	}
 		
 	function novoJogo()
 	{
 		// longListas compoe: 
 		// methProduzida - dinheiroLimpo - dinheiroSujo, 
-		// estresse  - estresse p/s    
+		// estresse  - estresse padrao p/s    
 		// producao p/clique - preco p/unidade  
 		// naoh - hcl - h2so4 - metilamina
 		// quantos % a barra cresce a cada 100 ms
 		
 		longListas = [0.0, 0.0, 0.0, 
 		              0.0, 0.1, 
-		              1.5, 5.0, 
+		              1.5, 25.0, 
 		              100.0, 100.0, 100.0, 100.0,
 		              1.0];
 		              
 		funcListas = [dealers, cookers, pureza, laboratorios, transportes, 
 		              empresas];
+	}
+
+	function sistemasAutomaticos()
+	{
+		producaoAutomatica();
+		atualizarEstresse();
 	}
 	
 	function producaoAutomatica()
@@ -78,20 +84,38 @@ class entidadeLocal extends MonoBehaviour {
 		if (producao > 0.0) {
 			atualizarValor("meth", producao);
 			
-			if (contadorMeth != null)
+			if (GameObject.Find("contadorInstantaneoMeth") != null) {
+				contadorMeth = GameObject.Find("contadorInstantaneoMeth").GetComponent(contadorInstantaneo);
 				contadorMeth.contar(producao);
+			}
 		}
 
 		Invoke("producaoAutomatica", 1);
 	}
 
-	function atualizarValor(tipo : String,  valor : float) 
+	function atualizarEstresse()
+	{
+		atualizarEstresse(getValor("estressePadrao"));
+		if (GameObject.Find("musicaRadio") != null)
+			if (GameObject.Find("musicaRadio").GetComponent(AudioSource).isPlaying)
+				atualizarValor("estresse", -0.03);
+	}
+
+	function atualizarEstresse(quantidade : float)
+	{
+		atualizarValor("estresse", quantidade);
+
+		CancelInvoke("atualizarEstresse");
+		Invoke("atualizarEstresse", 1);
+	}
+
+	function atualizarValor(tipo : String, valor : float) 
 	{
 		for (var i=0; i < longNomes.length; i++) {
 			if (tipo == longNomes[i]) {
 				
 				longListas[i] += valor;
-				longListas[i] = corrigirValor(longListas[i]); // arredonda para duas casas decimais
+				longListas[i] = parseFloat(longListas[i].ToString("F2")); 
 
 				if (tipo == "limpo" || tipo == "sujo" || tipo == "meth")
 					longListas[i] = checaNegativo(longListas[i]);
@@ -160,43 +184,44 @@ class entidadeLocal extends MonoBehaviour {
 		return false;
 	}
 	
-	function organizarValor(valor : float)
-	{
-	    var sufixos = ["", "k", "m", "bi", "tri"];
-	    var valorString = "";
-	    var sufixo = 0;
-	    var tamanho = 0;
-
-	    valor = corrigirValor(valor);
-
-	    for (var i = valor.ToString().length-1; i >= 0; i++) {
-
-	        if (valorString.length == 6)
-	            valorString = "" + valorString[0];
-
-	        if (valorString.length == 2)
-	            valorString = "." + valorString;
-
-	        if (tamanho % 4 == 0)
-	            sufixo++;
-
-	        if (valor.ToString()[i] != ".") {
-	            tamanho++;
-	            valorString += valor.ToString()[i];
-	        }
-	    }
-
-	    if (valorString[0] == ".")
-	        valorString[0] = "";
-
-	    return valorString + sufixos[sufixo];
-	}
-
-    // arredonda para duas casas decimais
-    function corrigirValor(valor : float)
+	function organizarValor(valor : long)
     {
-    	var valorCorreto = Mathf.Round(valor * 100.0) / 100.0;
-    	return valorCorreto;
+        var sufixos = [" k", " mi", " bi", " tri"];
+        var aux  = valor.ToString("F2");
+        var auxInteiro = aux.Split("."[0])[0];
+
+        if (auxInteiro.length < 4)
+        	return aux;
+
+        var i = 4;
+        var j = 6;
+        var sufixo = 0;
+       	var auxString = "";
+
+        while (true) {
+
+        	if (auxInteiro.length >= i && auxInteiro.length <= j) {
+
+        		var localPonto = auxInteiro.length - i + 1;
+        		for (var k = 0; k < auxInteiro.length; k++) {
+        			if (k == localPonto)
+        				auxString += ".";
+        			if (k >= localPonto+2) 
+        				break;
+
+        			auxString += auxInteiro[k];
+        		}
+
+        		break;
+
+        	} else {
+        		i += 3; 
+        		j += 3;
+        		sufixo++;
+        	}
+        }
+
+        return auxString + sufixos[sufixo];
     }
    
     function getValor(tipo : String)
@@ -221,5 +246,15 @@ class entidadeLocal extends MonoBehaviour {
 	{
 		return getFunc(tipo).length;
 	}
-	
+
+	function getMosca()
+	{
+		var mosca = GameObject.Find("Mosca");
+		
+		if (mosca != null)
+			return true;
+
+		return false;
+	}
+
 }
