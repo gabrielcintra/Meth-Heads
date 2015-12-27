@@ -1,4 +1,4 @@
-﻿#pragma strict
+#pragma strict
 #pragma downcast
 
 class entidadeLocal extends MonoBehaviour {
@@ -91,7 +91,7 @@ class entidadeLocal extends MonoBehaviour {
 			if (tipo == longNomes[i]) {
 				
 				longListas[i] += valor;
-				longListas[i] = corrigirValor(longListas[i]); // arredonda para duas casas decimais
+				longListas[i] = parseFloat(corrigirValor(longListas[i],2)); // arredonda para duas casas decimais
 
 				if (tipo == "limpo" || tipo == "sujo" || tipo == "meth")
 					longListas[i] = checaNegativo(longListas[i]);
@@ -162,41 +162,22 @@ class entidadeLocal extends MonoBehaviour {
 	
 	function organizarValor(valor : float)
 	{
-	    var sufixos = ["", "k", "m", "bi", "tri"];
-	    var valorString = "";
-	    var sufixo = 0;
-	    var tamanho = 0;
+		
 
-	    valor = corrigirValor(valor);
+		return valor;
 
-	    for (var i = valor.ToString().length-1; i >= 0; i++) {
-
-	        if (valorString.length == 6)
-	            valorString = "" + valorString[0];
-
-	        if (valorString.length == 2)
-	            valorString = "." + valorString;
-
-	        if (tamanho % 4 == 0)
-	            sufixo++;
-
-	        if (valor.ToString()[i] != ".") {
-	            tamanho++;
-	            valorString += valor.ToString()[i];
-	        }
-	    }
-
-	    if (valorString[0] == ".")
-	        valorString[0] = "";
-
-	    return valorString + sufixos[sufixo];
 	}
 
     // arredonda para duas casas decimais
-    function corrigirValor(valor : float)
+    function corrigirValor(numero : float, casasDecimais : int) 
     {
-    	var valorCorreto = Mathf.Round(valor * 100.0) / 100.0;
-    	return valorCorreto;
+        var fator = Mathf.Pow(10, casasDecimais || 0);
+        var v = (Mathf.Round(Mathf.Round(numero * fator * 100) / 100) / fator).ToString();
+
+        if (v.IndexOf('.') >= 0) 
+            return v + fator.ToString().Substring(v.length - v.IndexOf('.'));
+
+        return v + '.' + fator.ToString().Substring(1);
     }
    
     function getValor(tipo : String)
