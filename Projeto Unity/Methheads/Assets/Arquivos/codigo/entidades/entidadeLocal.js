@@ -33,8 +33,12 @@ class entidadeLocal extends MonoBehaviour {
                      "estresse", "estressePadrao",
                      "producaoUnidade", "precoUnidade",
                      "naoh", "hcl", "h2so4", "C10H15N",
+<<<<<<< HEAD
                      "capnaoh", "caphcl", "caph2so4", "capC10H15N",
                      "preconaoh", "precohcl", "precoh2so4", "precoC10H15N",
+=======
+                     "capnaoh", "caphcl", "caph2so4", "capC10H15N"
+>>>>>>> origin/master
                      "velocidadeVenda"];
        
         funcNomes = ["dealer", "cooker", "provider", "pureza", "transporte",
@@ -56,15 +60,23 @@ class entidadeLocal extends MonoBehaviour {
         // producao p/clique - preco p/unidade  
         // naoh - hcl - h2so4 - metilamina
         // capacidade naoh - cap hcl - cap h2so4 - cap met
+<<<<<<< HEAD
         // preco de naoh - preco hcl - preco h2so4 - preco met
+=======
+>>>>>>> origin/master
         // quantos % a barra cresce a cada 100 ms
        
         longListas = [0.0, 0.0, 0.0,
                       0.0, 0.1,
                       1.5, 25.0,
-                      100.0, 100.0, 100.0, 100.0,
+<<<<<<< HEAD
+                      0.0, 0.0, 100.0, 100.0,
                       100.0, 100.0, 100.0, 100.0,
                       0.75, 0.5, 0.25, 30.0,
+=======
+                      100.0, 100.0, 100.0, 100.0,
+                      100.0, 100.0, 100.0, 100.0,
+>>>>>>> origin/master
                       1.0];
                      
         funcListas = [dealers, cookers, pureza, laboratorios, transportes,
@@ -189,8 +201,12 @@ class entidadeLocal extends MonoBehaviour {
            
         return false;
     }
- 
+   
+<<<<<<< HEAD
     function organizarValor(valor : float)
+=======
+    function organizarValor(valor : long)
+>>>>>>> origin/master
     {
         var sufixos = [" k", " mi", " bi", " tri"];
         var aux  = valor.ToString("F2");
@@ -262,4 +278,8 @@ class entidadeLocal extends MonoBehaviour {
        
         return temMosca;
     }
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> origin/master
 }
