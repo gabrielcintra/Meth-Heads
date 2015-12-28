@@ -30,43 +30,6 @@ class Ingrediente extends MonoBehaviour {
 		this.precoUnidade = precoUnidade;
 	}
 	
-	function reabastecer() 
-	{
-		reabastecer(quantidadeTotal - quantidadeAtual);
-	}
-	
-	function reabastecer(quantidade : float) 
-	{
-		var dinheiroLimpo = entidade.getValor("limpo");
-		var dinheiroSujo = entidade.getValor("sujo");
-		var preco = precoUnidade * quantidade;
-
-		if (quantidade > 5) {
-			
-			if (preco <= dinheiroSujo) { // checa se ele tem dinheiro sujo pra pagar
-				entidade.atualizarValor("sujo", preco * -1);
-				entidade.atualizarValor(nome, quantidade);
-			} else {
-				if (preco <= dinheiroLimpo) { // checa se ele tem dinheiro limpo pra pagar
-					entidade.atualizarValor("limpo", preco * -1);
-					entidade.atualizarValor(nome, quantidade);
-				} else {
-					if (preco <= dinheiroLimpo + dinheiroSujo) { // checa se somando os dois tipos de dinheiro ele pode pagar
-						var diferenca = entidade.getValor("limpo") - entidade.getValor("sujo");
-						
-						entidade.atualizarValor("sujo", entidade.getValor("sujo") * -1);
-						entidade.atualizarValor("limpo", entidade.getValor("limpo") - diferenca);
-						
-						quantidadeAtual += quantidade;
-					} else // se nao, ele nao tem dinheiro
-						balaoFalas.falar(1); // fala que falta dinheiro
-				}
-			}
-		}
-		
-		atualizarBarra();
-	}
-	
 	function remover()
 	{
 		remover(custoProducao);
