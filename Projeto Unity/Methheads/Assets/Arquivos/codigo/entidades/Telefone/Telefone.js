@@ -44,8 +44,12 @@ class Telefone extends MonoBehaviour {
 		switch(parseInt(numeroDigitado)) 
 	    {
 	        case 7655670:
-	            acaoPizza();
+	            ligar("acaoPizza");
 	            break;
+
+        	case 5054205:
+        		ligar("acaoFornecedor");
+        		break;
 	        
 	        default:
 	            tocarSom("ocupado");
@@ -79,10 +83,21 @@ class Telefone extends MonoBehaviour {
 		return numeroDigitado;
 	}
 
+	function ligar(funcao : String){
+		tocarSom("ligar");
+		Invoke(funcao,audioSource.clip.length);
+	}
+
 	function acaoPizza()
 	{
-		tocarSom("ligar");
 		print ("Ok");
+	}
+
+	function acaoFornecedor(){
+		
+		var fornecedor = GameObject.Find("Fornecedor");
+		for(var l = 0; l < fornecedor.transform.childCount; ++l)
+	        fornecedor.transform.GetChild(l).gameObject.SetActive(true);
 	}
 
 }

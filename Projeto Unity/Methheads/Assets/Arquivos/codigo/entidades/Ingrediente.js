@@ -108,7 +108,7 @@ class Ingrediente extends MonoBehaviour {
 	function reconhecerInfo()
 	{
 	    var objetosInfo = ["formula", "proporcao", "nome", "porcentagem"];
-	    var textos = [nome, custoProducao.ToString() + " mol", nomeCientifico, getPorcentagem(quantidadeAtual,quantidadeTotal) + "%"];
+	    var textos = [nome, custoProducao.ToString() + " mol", nomeCientifico, getPorcentagem(quantidadeAtual, entidade.getValor("cap"+nome)) + "%"];
 
 	    for (var i = 0; i < objetosInfo.length; i++)
 	        GameObject.Find(objetosInfo[i]).GetComponent(Text).text = textos[i];

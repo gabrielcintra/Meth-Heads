@@ -10,12 +10,13 @@ class Mosca extends MonoBehaviour {
 
 	var moscaObjeto : GameObject;
 	var moscaMorta : Sprite[]; //0 - Morta / 1 - Mancha
+	var temMosca : boolean;
 
 	function Start () 
 	{
 		entidade = GameObject.Find("Entidade").GetComponent(entidadeLocal);
 		moscaObjeto = GameObject.Find("Mosca");
-		moscaObjeto.SetActive(false);
+		alternarMosca(false);
 		
 		Invoke("tentaAparecer", 0);
 	}
@@ -38,7 +39,7 @@ class Mosca extends MonoBehaviour {
 	
 	function aparecer() 
 	{ 
-		moscaObjeto.SetActive(true);
+		alternarMosca(true);
 		
 		moscaObjeto.transform.position.x = 0.0;
 		moscaObjeto.transform.position.y = 0.0;
@@ -79,6 +80,8 @@ class Mosca extends MonoBehaviour {
 		if (moscaObjeto.transform.position.y <= -3) {
 			GetComponent(Image).sprite = moscaMorta[1];
 			Invoke("removerMoscaMorta", 5);
+			CancelInvoke("atualizarEstresse");
+			temMosca = false;
 		} else {
 			Invoke("derrubarMoscaMorta", 0.01);
 			moscaObjeto.transform.position.y = moscaObjeto.transform.position.y - 0.1;
@@ -89,8 +92,7 @@ class Mosca extends MonoBehaviour {
 	{
 		if (GetComponent(CanvasGroup).alpha <= 0) {
 			GetComponent(Animator).enabled = true;
-			CancelInvoke("atualizarEstresse");
-			moscaObjeto.SetActive(false);
+			alternarMosca(false);
 		
 			Invoke("tentaAparecer", 20);
 		} else {
@@ -104,5 +106,10 @@ class Mosca extends MonoBehaviour {
 		CancelInvoke("atualizarEstresse");
 		entidade.atualizarValor("estresse", 1.0);
 		Invoke("atualizarEstresse", 1);
+	}
+
+	function alternarMosca(_temMosca : boolean){
+		temMosca = _temMosca;
+		moscaObjeto.SetActive(_temMosca);
 	}
 }

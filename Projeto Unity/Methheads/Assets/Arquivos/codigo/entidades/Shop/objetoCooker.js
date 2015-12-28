@@ -17,11 +17,11 @@ class objetoCooker extends objetoCrime {
 
 	function getAtributoTexto()
 	{
-		return "Cooks " + atributo + " meth per second";
+		return "Cooks " + entidade.organizarValor(atributo) + " meth per second";
 	}
 
 	function getSecTexto() {
-		return "Tax: " + taxa; 
+		return taxa + "%"; 
 	}
 
 }

@@ -4,7 +4,7 @@ class botaoProduzir extends MonoBehaviour {
 
 	var entidade : entidadeLocal;
 
-	var frames : Sprite[]; // 0 - normal / 1 - destacado
+	var frames : Sprite[]; // 0 - normal / 1 - destacado / 2 - indisponível
 	var ingredientes : GameObject[];
 	
 	var balaoFalas : balaoFala;
@@ -18,7 +18,10 @@ class botaoProduzir extends MonoBehaviour {
 
 	function OnMouseEnter()
 	{
-		GetComponent(Image).sprite = frames[1];
+		if (!entidade.getMosca() && entidade.getValor("estresse") < 99)
+			GetComponent(Image).sprite = frames[1];
+		else
+			GetComponent(Image).sprite = frames[2];
 	}
 	
 	function OnMouseExit()
