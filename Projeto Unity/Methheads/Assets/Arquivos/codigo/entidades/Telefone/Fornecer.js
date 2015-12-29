@@ -48,4 +48,5 @@ function getQuantidade()
 function resetarSlider()
 {
 	slider.GetComponent(Slider).value = 0;
+	slider.SetActive(false);
 }

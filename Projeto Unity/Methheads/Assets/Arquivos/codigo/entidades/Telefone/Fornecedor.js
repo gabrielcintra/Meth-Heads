@@ -5,6 +5,8 @@ var ingredientes : Fornecer[];
 var precoFinal : float;
 var quantidadeComprada : float;
 
+var animator : GameObject;
+
 function falar(fala : int){   /// 0 = qual ingrediente /// 1 = quanto de cada // 2 = após a compra // 3 = fala o preço
 	
 	var balaoFala = GameObject.Find("fala").GetComponent(Text);
@@ -44,7 +46,8 @@ function comprar(tipo : String)
 {	
 	var dinheiroFinal = entidade.getValor(tipo) - precoFinal;
 	entidade.atualizarValor(tipo, dinheiroFinal);
-	
+	animator.SetActive(false);
+
 	for(ingrediente in ingredientes) {
 		var nomeIngrediente = ingrediente.ingrediente;
 		var quantidadeIngrediente = entidade.getValor(nomeIngrediente) + ingrediente.getQuantidade();
@@ -94,6 +97,11 @@ function checarQuantidade()
 function Desligar()
 {
 	falar(0);
-	for (var i = 0; i < this.gameObject.transform.childCount; ++i)
-		this.gameObject.transform.GetChild(i).gameObject.SetActive(false);
+	
+	if (quantidadeComprada > 0){
+		animator.SetActive(true);
+		quantidadeComprada = 0;
+	}
+	
+	this.gameObject.SetActive(false);
 }
