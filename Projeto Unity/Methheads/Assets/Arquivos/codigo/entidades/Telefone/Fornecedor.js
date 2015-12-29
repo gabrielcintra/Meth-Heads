@@ -1,4 +1,5 @@
 ﻿#pragma strict
+
 var entidade : entidadeLocal;
 var ingredientes : Fornecer[];
 var precoFinal : float;
@@ -31,19 +32,20 @@ function falar(fala : int){   /// 0 = qual ingrediente /// 1 = quanto de cada //
 	}
 }
 
-function setPrecoFinal(	){
+function setPrecoFinal(	)
+{
 	precoFinal = 0;
 	for(var i = 0; i < ingredientes.length; i++)
 		precoFinal += ingredientes[i].getPreco();
 	falar(3);
 }
 
-function comprar(tipo : String){
-	
+function comprar(tipo : String)
+{	
 	var dinheiroFinal = entidade.getValor(tipo) - precoFinal;
 	entidade.atualizarValor(tipo, dinheiroFinal);
 	
-	for(ingrediente in ingredientes){
+	for(ingrediente in ingredientes) {
 		var nomeIngrediente = ingrediente.ingrediente;
 		var quantidadeIngrediente = entidade.getValor(nomeIngrediente) + ingrediente.getQuantidade();
 		entidade.atualizarValor(nomeIngrediente, quantidadeIngrediente);
@@ -55,13 +57,14 @@ function comprar(tipo : String){
 	GameObject.Find("botaoComprar").GetComponent(Button).enabled = false;
 }
 
-function botaoComprar(){
+function botaoComprar()
+{
 	var dinheiroSujo = entidade.getValor("sujo");
 	var dinheiroLimpo = entidade.getValor("limpo");
 
 	checarQuantidade();
 	
-	if (quantidadeComprada > 0){
+	if (quantidadeComprada > 0) {
 		if (dinheiroSujo > precoFinal)
 			comprar("sujo");
 		else if (dinheiroLimpo > precoFinal)
@@ -81,13 +84,15 @@ function botaoComprar(){
 	}
 }
 
-function checarQuantidade(){
+function checarQuantidade()
+{
 	for (ingrediente in ingredientes){
 		quantidadeComprada += ingrediente.getQuantidade(); 
 	}
 }
 
-function Desligar(){
+function Desligar()
+{
 	falar(0);
 	for (var i = 0; i < this.gameObject.transform.childCount; ++i)
 		this.gameObject.transform.GetChild(i).gameObject.SetActive(false);

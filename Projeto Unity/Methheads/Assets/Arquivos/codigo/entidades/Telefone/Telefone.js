@@ -10,9 +10,14 @@ class Telefone extends MonoBehaviour {
 	var nomeSom : String[];
 	var tipoSom : AudioClip[];
 
+	//--------- Telefonemas ----------
+	var Fornecedor : GameObject;
+	//--------------------------------
+
 	function Start() 
 	{
 		numeroDigitado = "";
+		nomeSom = ["ligar", "desligar", "ocupado", "digitar", "ocupadoDireto"];
 	    objetoTelefone = GameObject.Find("telefoneInterface");
 	}
 	
@@ -24,22 +29,22 @@ class Telefone extends MonoBehaviour {
 
 	function ativarTelefone()
 	{
-	    for(var l = 0; l < objetoTelefone.transform.childCount; ++l)
-	        objetoTelefone.transform.GetChild(l).gameObject.SetActive(true);
+		gameObject.SetActive(true);
 	}
 
 	function desativarTelefone()
 	{
 	    numeroDigitado = "";
 
-	    for(var l = 0; l < objetoTelefone.transform.childCount; ++l)
-	        objetoTelefone.transform.GetChild(l).gameObject.SetActive(false);
+	    gameObject.SetActive(false);
 	}
 	    
 	function Telefonar()
 	{
-		if (numeroDigitado == "")
+		if (numeroDigitado.length < 7) {
+			tocarSom("ocupadoDireto");
 			return;
+		}
 		
 		switch(parseInt(numeroDigitado)) 
 	    {
@@ -75,7 +80,11 @@ class Telefone extends MonoBehaviour {
 	function resetarNum()
 	{
 		audioSource.Stop();
+		
+		var aux = numeroDigitado;
 		numeroDigitado = "";
+
+		return aux;
 	}
 
 	function getNum()
@@ -83,9 +92,10 @@ class Telefone extends MonoBehaviour {
 		return numeroDigitado;
 	}
 
-	function ligar(funcao : String){
+	function ligar(funcao : String)
+	{
 		tocarSom("ligar");
-		Invoke(funcao,audioSource.clip.length);
+		Invoke(funcao, audioSource.clip.length);
 	}
 
 	function acaoPizza()
@@ -93,11 +103,9 @@ class Telefone extends MonoBehaviour {
 		print ("Ok");
 	}
 
-	function acaoFornecedor(){
-		
-		var fornecedor = GameObject.Find("Fornecedor");
-		for(var l = 0; l < fornecedor.transform.childCount; ++l)
-	        fornecedor.transform.GetChild(l).gameObject.SetActive(true);
+	function acaoFornecedor()
+	{
+		Fornecedor.SetActive(true);
 	}
 
 }

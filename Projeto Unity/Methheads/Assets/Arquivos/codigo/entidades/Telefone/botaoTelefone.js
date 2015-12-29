@@ -21,7 +21,8 @@ class botaoTelefone extends MonoBehaviour {
 	            break;
 	            
 	        case 11:
-	        	telefone.resetarNum();
+	        	if (telefone.resetarNum() == "")
+	        		telefone.desativarTelefone();
 	        	break;
 	        
 	        default:

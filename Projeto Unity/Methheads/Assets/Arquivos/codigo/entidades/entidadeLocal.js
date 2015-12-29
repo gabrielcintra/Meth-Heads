@@ -59,7 +59,7 @@ class entidadeLocal extends MonoBehaviour {
         // preco de naoh - preco hcl - preco h2so4 - preco met
         // quantos % a barra cresce a cada 100 ms
        
-        longListas = [0.0, 0.0, 100000,
+        longListas = [0.0, 0.0, 20.0,
                       0.0, 0.1,
                       1.5, 25.0,
                       0,0, 100.0, 100.0,
