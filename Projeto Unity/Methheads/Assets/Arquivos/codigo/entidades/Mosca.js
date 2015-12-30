@@ -90,21 +90,16 @@ class Mosca extends MonoBehaviour {
 	
 	function removerMoscaMorta() 
 	{
-		if (GetComponent(CanvasGroup).alpha <= 0) {
-			GetComponent(Animator).enabled = true;
+		if (entidade.fadeObjeto(this.gameObject)) {
 			alternarMosca(false);
-		
 			Invoke("tentaAparecer", 20);
-		} else {
-			GetComponent(CanvasGroup).alpha -= 0.1;
-			Invoke("removerMoscaMorta", 0.1);
 		}
 	}
 
 	function atualizarEstresse()
 	{
 		CancelInvoke("atualizarEstresse");
-		entidade.atualizarValor("estresse", 1.0);
+		entidade.atualizarValor("estresse", 0.7);
 		Invoke("atualizarEstresse", 1);
 	}
 

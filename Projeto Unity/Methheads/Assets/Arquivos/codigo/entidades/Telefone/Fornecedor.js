@@ -1,14 +1,16 @@
 ﻿#pragma strict
 
 var entidade : entidadeLocal;
+var telefone : Telefone;
+
 var ingredientes : Fornecer[];
 var precoFinal : float;
 var quantidadeComprada : float;
 
 var animator : GameObject;
 
-function falar(fala : int){   /// 0 = qual ingrediente /// 1 = quanto de cada // 2 = após a compra // 3 = fala o preço
-	
+function falar(fala : int)  /// 0 = qual ingrediente /// 1 = quanto de cada // 2 = após a compra // 3 = fala o preço
+{   
 	var balaoFala = GameObject.Find("fala").GetComponent(Text);
 
 	switch(fala){
@@ -34,11 +36,12 @@ function falar(fala : int){   /// 0 = qual ingrediente /// 1 = quanto de cada //
 	}
 }
 
-function setPrecoFinal(	)
+function setPrecoFinal()
 {
 	precoFinal = 0;
 	for(var i = 0; i < ingredientes.length; i++)
 		precoFinal += ingredientes[i].getPreco();
+	
 	falar(3);
 }
 

@@ -13,22 +13,21 @@ class botaoTelefone extends MonoBehaviour {
     {
         // botao ligar - 10
         // botao desligar - 11
-        
+
         switch(botao) 
 	    {
 	        case 10:
-	            telefone.Telefonar();
+	            telefone.botaoVerde();
 	            break;
 	            
 	        case 11:
-	        	if (telefone.resetarNum() == "")
-	        		telefone.desativarTelefone();
+	        	if (telefone.botaoVermelho() == "")
+	        		telefone.desligarTelefone();
 	        	break;
 	        
 	        default:
-	        	if (telefone.getNum().length < 8)
+	        	if (telefone.getNum().length < 8 && telefone.getLigacao() == null)
 	            	telefone.atualizarNum(botao.ToString());
-	            
 	            break;
 	    }
 	    

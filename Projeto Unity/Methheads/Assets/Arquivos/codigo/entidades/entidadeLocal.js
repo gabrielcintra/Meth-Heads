@@ -26,6 +26,7 @@ class entidadeLocal extends MonoBehaviour {
     //----------------------------------------
    
     var contadorMeth : contadorInstantaneo;
+    var objetoFade : GameObject;
    
     function Start()
     {
@@ -228,6 +229,26 @@ class entidadeLocal extends MonoBehaviour {
         }
  
         return auxString + sufixos[sufixo];
+    }
+
+    function fadeObjeto(objeto : GameObject)
+    {
+    	objetoFade = objeto;
+    	return fadeObjeto();
+    }	
+
+    function fadeObjeto()
+    {
+    	if (objetoFade.GetComponent(CanvasGroup).alpha > 0.0) {
+			objetoFade.GetComponent(CanvasGroup).alpha -= 0.2;
+			Invoke("fadeObjeto", 0.1);
+		} else {
+			objetoFade.GetComponent(CanvasGroup).alpha = 1.0;
+			objetoFade.SetActive(false);
+			return true;
+		}
+
+		return false;
     }
    
     function getValor(tipo : String)
