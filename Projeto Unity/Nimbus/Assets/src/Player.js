@@ -67,7 +67,7 @@ function FixedUpdate()
 function Voar()
 {
     Voando = true;
-    RigidBody.AddRelativeForce(Vector2.ClampMagnitude(GetMousePos().normalized * Velocidade * Time.deltaTime, 1.0));
+    RigidBody.AddRelativeForce(Vector2.ClampMagnitude(GetMousePos().normalized * Velocidade * Time.deltaTime, transform.position.z));
 
     CancelInvoke("ResetarVoo");
     Invoke("ResetarVoo", 3);
@@ -87,10 +87,10 @@ function Coletar(Bola : GameObject)
 function GetMousePos()
 {
 	var mousePos = Cam.ScreenToWorldPoint(Input.mousePosition);
-  mousePos = Vector2(mousePos.x, mousePos.y);
-  var direcao = (mousePos - this.transform.position);
+  	mousePos = Vector2(mousePos.x, mousePos.y);
+  	var direcao = (mousePos - this.transform.position);
 
-  return direcao;
+  	return direcao;
 }
 
 function GetMouseLado()
@@ -154,8 +154,4 @@ function OnCollisionEnter2D(Objeto : Collision2D)
         Voando = false;
         RigidBody.velocity = (Vector3.zero);
 	  }
-
-    if (Tag == "Bola") {
-        Coletar(Objeto.gameObject);
-    }
 }
