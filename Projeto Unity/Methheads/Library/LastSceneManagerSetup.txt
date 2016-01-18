@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Arquivos/Cenas/Quarto.unity
+- path: Assets/Arquivos/Cenas/Esgoto.unity
   isLoaded: 1
   isActive: 1

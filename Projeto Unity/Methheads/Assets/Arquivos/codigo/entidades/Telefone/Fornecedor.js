@@ -92,9 +92,8 @@ function botaoComprar()
 
 function checarQuantidade()
 {
-	for (ingrediente in ingredientes){
+	for (ingrediente in ingredientes)
 		quantidadeComprada += ingrediente.getQuantidade(); 
-	}
 }
 
 function Desligar()
@@ -105,6 +104,9 @@ function Desligar()
 		animator.SetActive(true);
 		quantidadeComprada = 0;
 	}
+
+	for (ingrediente in ingredientes)
+		ingrediente.resetarSlider();
 	
 	this.gameObject.SetActive(false);
 }
