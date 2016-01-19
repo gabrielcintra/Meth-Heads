@@ -26,10 +26,9 @@ function Empurrar()
 	Dono = null;
 
 	var Player = UltimoDono.GetComponent(Player);
- 	var angle = Mathf.Atan2 (Player.GetMousePos().y, Player.GetMousePos().x) * Mathf.Rad2Deg;
- 	
- 	transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
- 	RigidBody.AddRelativeForce (transform.right * 0.5);
+
+	transform.LookAt(Player.GetMousePos().normalized, Vector3.forward);
+	RigidBody.AddForce(transform.forward * Player.GetForca());
 }
 
 function AtualizarDono(Dono : GameObject)
