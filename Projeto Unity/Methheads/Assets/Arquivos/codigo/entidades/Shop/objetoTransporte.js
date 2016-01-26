@@ -7,6 +7,9 @@ class objetoTransporte extends Objeto {
 	function Start()
 	{
 		super();
+		tipo = "transporte";
+		tipoDinheiro = "limpo";
+		atualizarComponentes();
 	}
 
 	function getFilho()
@@ -18,9 +21,9 @@ class objetoTransporte extends Objeto {
 	    return capacidade;
 	}
 
-	function getSecTexto()
+	function atualizarComponentes()
 	{
-	    return "It can hold " + capacidade + "lb";
+		componentesValores = [nome, "OWNED: "+ entidade.organizarValor(entidade.getFuncTamanho(this)), "$" + entidade.organizarValor(getValor()), "SPEED: "+entidade.organizarValor(getAtributo())+"m/s","CAPACITY: "+entidade.organizarValor(getSecundario())+"lb"];
 	}
 	
 }

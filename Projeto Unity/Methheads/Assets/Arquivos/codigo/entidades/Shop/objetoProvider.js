@@ -7,6 +7,7 @@ class objetoProvider extends objetoCrime {
 	function Start()
 	{
 		super();
+		tipo = "provider";
 	}
 
 	function getFilho()

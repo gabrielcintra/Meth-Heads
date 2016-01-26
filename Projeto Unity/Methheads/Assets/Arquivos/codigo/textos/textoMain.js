@@ -10,6 +10,8 @@ class textoMain extends MonoBehaviour {
 	
 	var prefixo : String;
 	var sufixo : String;
+	
+	var quantiaDinheiro : boolean;
 
 	function Start () 
 	{
@@ -22,5 +24,11 @@ class textoMain extends MonoBehaviour {
 	{
 		valor = entidade.getValor(tipo);
 		textoValor.text = prefixo + entidade.organizarValor(valor) + sufixo;
+
+		if (quantiaDinheiro)
+			if(GameObject.Find("pagSeguro").GetComponent(Toggle).isOn)
+				tipo = "limpo";
+			else
+				tipo = "sujo";
 	}
 }

@@ -24,4 +24,8 @@ class objetoDealer extends objetoCrime {
 		return "" + taxa + "%"; 
 	}
 
+	function atualizarComponentes(){
+		componentesValores = [nome, entidade.getFuncTamanho(this).ToString(), "$" + entidade.organizarValor(getValor()), getAtributoTexto(), getSecTexto()];
+	}
+
 }

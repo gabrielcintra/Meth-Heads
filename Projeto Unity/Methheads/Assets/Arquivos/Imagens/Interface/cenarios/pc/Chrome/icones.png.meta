@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: 5a360574346491e4b9f8fd7e6b01c453
+timeCreated: 1453768836
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: speedD
+    21300002: flixnet
+    21300004: xtapes
+    21300006: albcus
+    21300008: 991
+    21300010: icones_5
+    21300012: ars
+    21300014: icones_7
+    21300016: chrome
+    21300018: flix
+    21300020: acust
+    21300022: dd
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: chrome
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 56
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: flix
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 56
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 16.5}
+        - {x: -17, y: -16.5}
+        - {x: 17, y: -16.5}
+        - {x: 17, y: 16.5}
+    - name: xtapes
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 56
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 16.5}
+        - {x: -17, y: -16.5}
+        - {x: 17, y: -16.5}
+        - {x: 17, y: 16.5}
+    - name: acust
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 56
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 16.5}
+        - {x: -17, y: -16.5}
+        - {x: 17, y: -16.5}
+        - {x: 17, y: 16.5}
+    - name: 991
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 9
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 16.5}
+        - {x: -16.5, y: -16.5}
+        - {x: 16.5, y: -16.5}
+        - {x: 16.5, y: 16.5}
+    - name: ars
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 9
+        width: 36
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: 16.5}
+        - {x: -18, y: 14.5}
+        - {x: -18, y: -16.5}
+        - {x: 18, y: -16.5}
+        - {x: 18, y: 16.5}
+    - name: dd
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 14
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

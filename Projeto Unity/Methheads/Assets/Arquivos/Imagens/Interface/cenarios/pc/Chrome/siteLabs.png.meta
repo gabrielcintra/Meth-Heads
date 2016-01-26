@@ -1,0 +1,265 @@
+fileFormatVersion: 2
+guid: eed43b088e1c71d4496a3e9a187fff9e
+timeCreated: 1453430812
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: fundo
+    21300002: enfeite
+    21300004: siteLabs_2
+    21300006: buy
+    21300008: sell
+    21300010: tabmoney
+    21300012: itemtab
+    21300014: siteLabs_7
+    21300016: fotoperfil
+    21300018: siteLabs_9
+    21300020: logo
+    21300022: banner
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: fundo
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 520
+        width: 141
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70.5, y: 77.5}
+        - {x: -70.5, y: -77.5}
+        - {x: 70.5, y: -77.5}
+        - {x: 70.5, y: 77.5}
+    - name: enfeite
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 520
+        width: 143
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -71.5, y: 77.5}
+        - {x: -71.5, y: -77.5}
+        - {x: 71.5, y: -77.5}
+        - {x: 71.5, y: 77.5}
+    - name: siteLabs_2
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 520
+        width: 147
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -73.5, y: 77.5}
+        - {x: -73.5, y: -77.5}
+        - {x: 73.5, y: -77.5}
+        - {x: 73.5, y: 77.5}
+    - name: buy
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 536
+        width: 118
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 62}
+        - {x: -59, y: 52}
+        - {x: -59, y: -62}
+        - {x: 45, y: -62}
+        - {x: 59, y: -37}
+        - {x: 59, y: 44}
+        - {x: 40, y: 62}
+    - name: sell
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 536
+        width: 118
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -59, y: 62}
+        - {x: -59, y: -38}
+        - {x: -34, y: -62}
+        - {x: 48, y: -62}
+        - {x: 59, y: -40}
+        - {x: 59, y: 55}
+        - {x: 48, y: 62}
+    - name: tabmoney
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 573
+        width: 207
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: itemtab
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 252
+        width: 724
+        height: 195
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -362, y: 97.5}
+        - {x: -362, y: -97.5}
+        - {x: 362, y: -97.5}
+        - {x: 362, y: 97.5}
+    - name: siteLabs_7
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 339
+        width: 40
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 21}
+        - {x: -20, y: -21}
+        - {x: 20, y: -21}
+        - {x: 20, y: 21}
+    - name: fotoperfil
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 267
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -62.5, y: 62.5}
+        - {x: -62.5, y: -62.5}
+        - {x: 62.5, y: -62.5}
+        - {x: 62.5, y: 62.5}
+    - name: siteLabs_9
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 267
+        width: 47
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: logo
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 21
+        width: 209
+        height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 93.5, y: 61.5}
+        - {x: 60.5, y: 94.5}
+        - {x: -43.5, y: 94.5}
+        - {x: -99.5, y: 19.5}
+        - {x: -104.5, y: -23.5}
+        - {x: -104.5, y: -90.5}
+        - {x: -99.5, y: -89.5}
+        - {x: -75.5, y: -56.5}
+        - {x: -23.5, y: -94.5}
+        - {x: 54.5, y: -94.5}
+        - {x: 74.5, y: -87.5}
+        - {x: 104.5, y: -40.5}
+        - {x: 104.5, y: 22.5}
+    - name: banner
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 82
+        width: 482
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 234, y: 28.5}
+        - {x: 233, y: 29.5}
+        - {x: 241, y: 29.5}
+        - {x: 241, y: 33.5}
+        - {x: -241, y: 33.5}
+        - {x: -241, y: 29.5}
+        - {x: -235, y: 28.5}
+        - {x: -235, y: -28.5}
+        - {x: -241, y: -29.5}
+        - {x: -241, y: -33.5}
+        - {x: 241, y: -33.5}
+        - {x: 241, y: -29.5}
+        - {x: 234, y: -28.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

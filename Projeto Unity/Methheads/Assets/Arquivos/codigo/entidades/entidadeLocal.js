@@ -60,7 +60,7 @@ class entidadeLocal extends MonoBehaviour {
         // preco de naoh - preco hcl - preco h2so4 - preco met
         // quantos % a barra cresce a cada 100 ms
        
-        longListas = [0.0, 0.0, 20.0,
+        longListas = [0.0, 100000.0, 1000000.0,
                       0.0, 0.1,
                       1.5, 25.0,
                       0,0, 100.0, 100.0,
@@ -68,7 +68,7 @@ class entidadeLocal extends MonoBehaviour {
                       0.75, 0.5, 0.25, 30.0,
                       1.0];
                      
-        funcListas = [dealers, cookers, pureza, laboratorios, transportes,
+        funcListas = [dealers, cookers, providers, pureza, laboratorios, transportes,
                       empresas];
     }
  
@@ -165,6 +165,7 @@ class entidadeLocal extends MonoBehaviour {
         for (var i = 0; i < funcNomes.length; i++)
             if (objeto.getTipo() == funcNomes[i]) {
                 funcListas[i].Add(objeto);
+                print (funcListas[i]);
                 return true;
             }
                
@@ -260,18 +261,42 @@ class entidadeLocal extends MonoBehaviour {
         return -1;
     }
    
-    function getFunc(tipo : String)
+    function getFunc(objeto : Objeto)
+    {
+        var quantidade = 0;
+
+        if (objeto == null)
+            return quantidade;
+        
+        var lista : Array;
+        for (var i=0; i < funcNomes.length; i++)
+            if (objeto.getTipo() == funcNomes[i]) {
+                lista = funcListas[i];
+                break;
+            }
+
+        var obj : Objeto;
+        if (lista != null) {
+            for (obj in lista)
+                if (objeto.getNome() == obj.getNome())
+                    quantidade++;
+        }
+
+        return quantidade;
+    }
+
+   function getFunc(tipo : String)
     {
         for (var i=0; i < funcNomes.length; i++)
             if (tipo == funcNomes[i])
                 return funcListas[i];
-               
+
         return new Array();
     }
  
-    function getFuncTamanho(tipo : String)
+    function getFuncTamanho(objeto : Objeto)
     {
-        return getFunc(tipo).length;
+        return getFunc(objeto);
     }
  
     function getMosca()

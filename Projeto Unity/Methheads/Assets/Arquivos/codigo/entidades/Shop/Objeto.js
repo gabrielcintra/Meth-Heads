@@ -28,22 +28,48 @@ class Objeto extends MonoBehaviour {
 	
 	function atualizarValores()
 	{
+		if (tipo != "cooker" && tipo != "dealer")
+			if (GameObject.Find("pagSeguro").GetComponent(Toggle).isOn)
+				tipoDinheiro = "limpo";
+			else
+				tipoDinheiro = "sujo";
+
+		atualizarComponentes();
+
 	    for (var i=0; i < componentesValores.length; i++)
 	    	componentes[i].GetComponent(Text).text = componentesValores[i];
     }
 	
-	function comprar()
-	{
+	function comprar() //// compra com on mouse down e retorna se a transação foi feita
+	{	
 		var retorno = false;
+
+		if (tipo != "cooker" && tipo != "dealer")
+			if(GameObject.Find("pagSeguro").GetComponent(Toggle).isOn)
+				tipoDinheiro = "limpo";
+			else
+				tipoDinheiro = "sujo";
 
 		if (entidade.temValor(tipoDinheiro, valor)) {
 			entidade.atualizarValor(tipoDinheiro, valor*-1);
 			entidade.adicionar(getFilho());
+			valor = valor * 1.10;
 			retorno = true;
 		}
 		
 		atualizarValores();
 		return retorno;
+	}
+
+	function botaoComprar() /// compra com OnClick em botões UI.
+	{
+		if (entidade.temValor(tipoDinheiro, valor)) {
+			entidade.atualizarValor(tipoDinheiro, valor*-1);
+			entidade.adicionar(getFilho());
+			valor = valor * 1.10;
+		}
+		
+		atualizarValores();
 	}
 	
 	function vender()
@@ -73,11 +99,16 @@ class Objeto extends MonoBehaviour {
 	{
 		return tipo;
 	}
+
+	function getDescricao(){
+		return descricao;
+	}
 	
 	// --- Metodos que serao reescritos pelos filhos
 	function getFilho() {return this;}
 	function getSecTexto(){return "";}
 	function getAtributoTexto(){return "";}
+	function atualizarComponentes(){return null;}
 	// -----------------------------------------------
 
 }

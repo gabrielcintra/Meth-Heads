@@ -1,5 +1,5 @@
-﻿#pragma strict
-
+#pragma strict
+import UnityEngine.SceneManagement;
 //clicou no botao mudou a cena
 function LoadNextLevel(name : String) 
 {
@@ -10,5 +10,5 @@ function LoadNextLevel(name : String)
 function LevelLoad(name : String) 
 {
 	yield WaitForSeconds(0.9f);
-	Application.LoadLevel(name);
+	SceneManager.LoadScene(name);
 }
